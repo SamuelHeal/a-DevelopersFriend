@@ -15,7 +15,7 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">a.DevelopersFriend</h1>
           </Link>
-          <p className="m-0">Who needs memory when you have a friend!</p>
+          <p className="m-0">Who needs memory?</p>
         </div>
         <div>
           {Auth.loggedIn() ? (
