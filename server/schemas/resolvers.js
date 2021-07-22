@@ -8,11 +8,11 @@ const resolvers = {
       return User.find();
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username });
+      return User.findOne({ username }).populate('projects');
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate('projects');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -48,35 +48,35 @@ const resolvers = {
 
       return { token, user };
     },
-    // addProject: async (parent, { projectName, projectAuthor }) => {
-    //   const project = await Project.create({
-    //     projectName,
-    //     projectAuthor
-    //   });
+    addProject: async (parent, { projectName, projectAuthor }) => {
+      const project = await Project.create({
+        projectName,
+        projectAuthor
+      });
 
-    //   await User.findOneAndUpdate(
-    //     { username: projectAuthor},
-    //     { $addToSet: { projects: project._id } }
-    //   );
+      await User.findOneAndUpdate(
+        { username: projectAuthor},
+        { $addToSet: { projectName, projects: project._id } }
+      );
 
-    //   return project;
-    // }
-    addProject: async (parent, { projectName }, context) => {
-      if (context.user) {
-        const project = await Project.create({
-          projectName,
-          projectAuthor: context.user.username,
-        });
+      return project;
+    }
+    // addProject: async (parent, { projectName }, context) => {
+    //   if (context.user) {
+    //     const project = await Project.create({
+    //       projectName,
+    //       projectAuthor: context.user.username,
+    //     });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { projects: project._id } }
-        );
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { projects: project._id } }
+    //     );
 
-        return project;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    //     return project;
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
     // addFrontEndFile: async (parent, { projectID, fileName }, context) => {
       // if (context.user) {
       //   return Project.findOneAndUpdate(

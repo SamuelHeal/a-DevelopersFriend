@@ -4,6 +4,9 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
+import ProjectList from '../components/projectList/index'
+import addProject from '../components/addProject/index'
+
 import Auth from '../utils/auth';
 
 const Profile = () => {
@@ -18,7 +21,7 @@ const Profile = () => {
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/me" />;
   }
-
+  console.log(user)
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -38,7 +41,14 @@ const Profile = () => {
         <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
           Viewing {userParam ? `${user.username}'s` : 'your'} profile.
         </h2>
-
+        <div>
+        
+          <ProjectList 
+            projects={user.projects}
+            title={`${user.username}'s thoughts...`}
+            showTitle={false}
+            showUsername={false}/>
+        </div>
       </div>
     </div>
   );

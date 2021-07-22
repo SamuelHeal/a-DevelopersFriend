@@ -31,26 +31,6 @@ export const ADD_PROJECT = gql`
       projectName
       projectAuthor
       createdAt
-    	folders {
-        _id
-        folderName
-        folderID
-        createdAt
-      }
-      frontEndFiles {
-        _id
-        fileName
-        html
-        css
-        javascript
-        createdAt
-      }
-      backEndFiles {
-				_id
-        fileName
-        javascript
-        createdAt
-      }
     }
   }
 `
