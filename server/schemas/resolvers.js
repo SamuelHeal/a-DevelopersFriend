@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Project, Folder } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -48,6 +48,19 @@ const resolvers = {
 
       return { token, user };
     },
+    // addProject: async (parent, { projectName, projectAuthor }) => {
+    //   const project = await Project.create({
+    //     projectName,
+    //     projectAuthor
+    //   });
+
+    //   await User.findOneAndUpdate(
+    //     { username: projectAuthor},
+    //     { $addToSet: { projects: project._id } }
+    //   );
+
+    //   return project;
+    // }
     addProject: async (parent, { projectName }, context) => {
       if (context.user) {
         const project = await Project.create({
@@ -64,88 +77,100 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addFrontEndFile: async (parent, { projectID, fileName}, context) => {
-      if (context.user) {
-        return Project.findOneAndUpdate(
-          { _id: projectID },
-          {
-            $addToSet: {
-              frontEndFiles: { fileName },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    addBackEndFile: async (parent, { projectID, fileName}, context) => {
-      if (context.user) {
-        return Project.findOneAndUpdate(
-          { _id: projectID },
-          {
-            $addToSet: {
-              backEndFiles: { fileName },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    removeProject: async (parent, { projectID }, context) => {
-      if (context.user) {
-        const project = await Project.findOneAndDelete({
-          _id: projectID,
-          projectAuthor: context.user.username,
-        });
+    // addFrontEndFile: async (parent, { projectID, fileName }, context) => {
+      // if (context.user) {
+      //   return Project.findOneAndUpdate(
+      //     { _id: projectID },
+      //     {
+      //       $addToSet: {
+      //         frontEndFiles: { fileName },
+      //       },
+      //     },
+      //     {
+      //       new: true,
+      //       runValidators: true,
+      //     }
+      //   );
+      // }
+      // throw new AuthenticationError('You need to be logged in!');
+  //     return Project.findOneAndUpdate(
+  //       { _id: projectID },
+  //       {
+  //         $addToSet: {
+  //           frontEndFiles: { fileName },
+  //         },
+  //       },
+  //       {
+  //         new: true,
+  //         runValidators: true,
+  //       }
+  //     );
+  //   },
+  //   addBackEndFile: async (parent, { projectID, fileName}, context) => {
+  //     if (context.user) {
+  //       return Project.findOneAndUpdate(
+  //         { _id: projectID },
+  //         {
+  //           $addToSet: {
+  //             backEndFiles: { fileName },
+  //           },
+  //         },
+  //         {
+  //           new: true,
+  //           runValidators: true,
+  //         }
+  //       );
+  //     }
+  //     throw new AuthenticationError('You need to be logged in!');
+  //   },
+  //   removeProject: async (parent, { projectID }, context) => {
+  //     if (context.user) {
+  //       const project = await Project.findOneAndDelete({
+  //         _id: projectID,
+  //         projectAuthor: context.user.username,
+  //       });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { projects: project._id } }
-        );
+  //       await User.findOneAndUpdate(
+  //         { _id: context.user._id },
+  //         { $pull: { projects: project._id } }
+  //       );
 
-        return project;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    removeFrontEnd: async (parent, { projectID, fileID }, context) => {
-      if (context.user) {
-        return Project.findOneAndUpdate(
-          { _id: projectID },
-          {
-            $pull: {
-              frontEndFiles: {
-                _id: fileID,
-              },
-            },
-          },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    removeBackEnd: async (parent, { projectID, fileID }, context) => {
-      if (context.user) {
-        return Project.findOneAndUpdate(
-          { _id: projectID },
-          {
-            $pull: {
-              backEndFiles: {
-                _id: fileID,
-              },
-            },
-          },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    }
+  //       return project;
+  //     }
+  //     throw new AuthenticationError('You need to be logged in!');
+  //   },
+  //   removeFrontEnd: async (parent, { projectID, fileID }, context) => {
+  //     if (context.user) {
+  //       return Project.findOneAndUpdate(
+  //         { _id: projectID },
+  //         {
+  //           $pull: {
+  //             frontEndFiles: {
+  //               _id: fileID,
+  //             },
+  //           },
+  //         },
+  //         { new: true }
+  //       );
+  //     }
+  //     throw new AuthenticationError('You need to be logged in!');
+  //   },
+  //   removeBackEnd: async (parent, { projectID, fileID }, context) => {
+  //     if (context.user) {
+  //       return Project.findOneAndUpdate(
+  //         { _id: projectID },
+  //         {
+  //           $pull: {
+  //             backEndFiles: {
+  //               _id: fileID,
+  //             },
+  //           },
+  //         },
+  //         { new: true }
+  //       );
+  //     }
+  //     throw new AuthenticationError('You need to be logged in!');
+  //   }
   },
 };
 

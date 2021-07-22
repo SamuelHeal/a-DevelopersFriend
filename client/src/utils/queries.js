@@ -19,3 +19,34 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_PROJECTS = gql`
+  query getProjects {
+    projects {
+      _id
+      projectName
+      projectAuthor
+      createdAt
+    }
+  }
+`
+
+export const QUERY_SINGLE_PROJECT = gql`
+  query getSingleProject($projectID: ID!) {
+    project(projectID: $projectID) {
+      _id
+      projectName
+      projectAuthor
+      createdAt
+      folders {
+        folderName
+      }
+      frontEndFiles {
+        fileName
+      }
+      backEndFiles {
+        fileName
+      }
+    }
+  }
+`

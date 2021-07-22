@@ -24,3 +24,33 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_PROJECT = gql`
+  mutation addProject($projectName: String!, $projectAuthor: String!) {
+    addProject(projectName: $projectName, projectAuthor: $projectAuthor) {
+      _id
+      projectName
+      projectAuthor
+      createdAt
+    	folders {
+        _id
+        folderName
+        folderID
+        createdAt
+      }
+      frontEndFiles {
+        _id
+        fileName
+        html
+        css
+        javascript
+        createdAt
+      }
+      backEndFiles {
+				_id
+        fileName
+        javascript
+        createdAt
+      }
+    }
+  }
+`

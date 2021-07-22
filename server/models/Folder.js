@@ -1,15 +1,15 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const projectSchema = new Schema({
-  projectName: {
+const folderSchema = new Schema({
+  folderName: {
     type: String,
     required: 'Your project must have a name...',
     minlength: 1,
     maxlength: 280,
     trim: true,
   },
-  projectAuthor: {
+  folderID: {
     type: String,
     required: true,
     trim: true,
@@ -73,6 +73,6 @@ const projectSchema = new Schema({
   ],
 });
 
-const Project = model('Project', projectSchema);
+const Folder = model('Folder', folderSchema);
 
-module.exports = Project;
+module.exports = Folder;

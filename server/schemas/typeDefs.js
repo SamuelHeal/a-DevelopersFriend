@@ -18,9 +18,20 @@ const typeDefs = gql`
     _id: ID
     projectName: String
     projectAuthor: String
+    createdAt: String
+    folders: [Folder]!
     frontEndFiles: [FrontEnd]!
     backEndFiles: [BackEnd]!
+  }
+
+  type Folder {
+    _id: ID
+    folderName: String
+    folderID: ID!
     createdAt: String
+    folders: [Folder]!
+    frontEndFiles: [FrontEnd]!
+    backEndFiles: [BackEnd]!
   }
 
   type FrontEnd {
@@ -29,12 +40,14 @@ const typeDefs = gql`
     html: String
     css: String
     javascript: String
+    createdAt: String
   }
 
   type BackEnd {
     _id: ID
     fileName: String
     javascript: String
+    createdAt: String
   }
 
   type Query {
@@ -48,7 +61,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addProject(projectName: String!): Project
+    addProject(projectName: String!, projectAuthor: String!): Project
     addFrontEndFile(projectID: ID!, fileName: String!): FrontEnd
     addBackEndFile(projectID: ID!, fileName: String!): BackEnd
     removeProject(projectID: ID!): Project
