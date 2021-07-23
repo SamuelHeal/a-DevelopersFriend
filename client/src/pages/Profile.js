@@ -5,7 +5,9 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
 import ProjectList from '../components/projectList/index'
-import addProject from '../components/addProject/index'
+import AddNewProject from '../components/addProject/index'
+
+import './Profile.css'
 
 import Auth from '../utils/auth';
 
@@ -21,7 +23,6 @@ const Profile = () => {
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/me" />;
   }
-  console.log(user)
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -37,10 +38,19 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="flex-row justify-center mb-3">
-        <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+      <h2 className="headingContainer">
+          {userParam ? `${user.username}'s` : 'Your'} Collections
         </h2>
+      <div className='profileContainer'>
+        {!userParam && (
+          <div
+            className="col-12 col-md-10 mb-3 p-3"
+            style={{ border: '1px dotted #1a1a1a' }}
+          >
+            <AddNewProject />
+          </div>
+        )}
+        
         <div>
         
           <ProjectList 

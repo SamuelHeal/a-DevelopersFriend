@@ -1,0 +1,32 @@
+.listContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap-reverse;
+    width: 90%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.collectionCard {
+    width: 30%;
+    border-style: solid;
+    margin: 30px;
+    min-width: 300px;
+}
+
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.button {
+    margin: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: red;
+    width: 30%
+}

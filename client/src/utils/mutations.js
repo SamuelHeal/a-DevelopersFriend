@@ -34,3 +34,14 @@ export const ADD_PROJECT = gql`
     }
   }
 `
+
+export const REMOVE_PROJECT = gql`
+  mutation removeProject($filter: ID!) {
+    removeProject(projectID: $filter) {
+      _id
+      projectName
+      projectAuthor
+      createdAt
+    }
+  }
+`

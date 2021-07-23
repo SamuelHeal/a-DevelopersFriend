@@ -6,7 +6,7 @@ const projectSchema = new Schema({
     type: String,
     required: 'Your project must have a name...',
     minlength: 1,
-    maxlength: 280,
+    maxlength: 30,
     trim: true,
   },
   projectAuthor: {

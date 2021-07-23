@@ -1,50 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './projectList.css'
+
+import { useMutation } from '@apollo/client';
+
+import { REMOVE_PROJECT } from '../../utils/mutations';
+import { QUERY_USER } from '../../utils/queries';
+
 const ProjectList = ({ 
     projects,
     title,
     showTitle = true,
     showUsername = true, }) => {
+
+    
+    const [removeProject, { error }] = useMutation(REMOVE_PROJECT)
+
+    const deleteProject = async (projectID) => {
+        try {
+            const { data } = await removeProject({
+                variables: { filter: projectID }
+            })
+        } catch (err) {
+            console.error(err);
+          }
+    }
+
     if (!projects.length) {
         return <h1>No projects yet</h1>
     }
     else{
-        console.log(projects)
-
         return (
-            <div>
+            <div className='listContainer'>
                 {showTitle && <h3>{title}</h3>}
                 {projects && projects.map((project) => (
-                    <div key={project._id} className="card mb-3">
-                        <h4 className="card-header bg-primary text-light p-2 m-0">
-                        {showUsername ? (
-                            <Link
-                            className="text-light"
-                            to={`/profiles/${project.projectAuthor}`}
-                            >
-                            {project.projectAuthor} <br />
-                            <span style={{ fontSize: '1rem' }}>
-                                had this thought on {project.createdAt}
-                            </span>
-                            </Link>
-                        ) : (
-                            <>
-                            <span style={{ fontSize: '1rem' }}>
-                                You had this thought on {project.createdAt}
-                            </span>
-                            </>
-                        )}
-                        </h4>
-                        <div className="card-body bg-light p-2">
-                        <p>{project.projectName}</p>
+                    <div key={project._id} className='collectionCard'>
+                        <h3 className='cardHeader'>
+                            {showUsername ? (
+                                <Link className='createdText' to={`/profiles/${project.projectAuthor}`}>
+                                    <p>Created on {project.createdAt}</p>
+                                </Link>
+                            ) : (
+                                <>
+                                    <p>Created on {project.createdAt}</p>
+                                </>
+                            )}
+                        </h3>
+                        <div className='cardBody'>
+                            <h2>{project.projectName}</h2>
                         </div>
-                        <Link
-                        className="btn btn-primary btn-block btn-squared"
-                        to={`/projects/${project._id}`}
-                        >
-                        Join the discussion on this thought.
-                        </Link>
+                        {showUsername ? (
+                            <div className='buttonContainer'>
+                                <Link className='button' to={`/projects/${project._id}`}>
+                                    View
+                                </Link>
+                            </div>
+                        ) : (
+                            <div className='buttonContainer'>
+                                <Link className='button' to={`/projects/${project._id}`}>
+                                    View
+                                </Link>
+                                <a className='button' onClick={() => {deleteProject(project._id)}}>
+                                    Delete
+                                </a>
+                            </div>
+                        )}
+                        
                     </div>
                 ))}
             </div>

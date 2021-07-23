@@ -48,35 +48,51 @@ const resolvers = {
 
       return { token, user };
     },
-    addProject: async (parent, { projectName, projectAuthor }) => {
-      const project = await Project.create({
-        projectName,
-        projectAuthor
-      });
 
-      await User.findOneAndUpdate(
-        { username: projectAuthor},
-        { $addToSet: { projectName, projects: project._id } }
-      );
+    addProject: async (parent, { projectName }, context) => {
+      if (context.user) {
+        const project = await Project.create({
+          projectName,
+          projectAuthor: context.user.username,
+        });
 
-      return project;
-    }
-    // addProject: async (parent, { projectName }, context) => {
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { projects: project._id } }
+        );
+
+        return project;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    // removeProject: async (parent, { projectID }, context) => {
     //   if (context.user) {
-    //     const project = await Project.create({
-    //       projectName,
+    //     const project = await Project.findOneAndDelete({
+    //       _id: projectID,
     //       projectAuthor: context.user.username,
     //     });
 
     //     await User.findOneAndUpdate(
     //       { _id: context.user._id },
-    //       { $addToSet: { projects: project._id } }
+    //       { $pull: { projects: project._id } }
     //     );
 
     //     return project;
     //   }
     //   throw new AuthenticationError('You need to be logged in!');
     // },
+    removeProject: async (parent, { projectID, projectAuthor }, context) => {
+      const project = await Project.findOneAndDelete({
+        _id: projectID
+      });
+
+      await User.findOneAndUpdate(
+        { username: projectAuthor},
+        { $pull: { projects: project._id}}
+      );
+
+      return project;
+    }
     // addFrontEndFile: async (parent, { projectID, fileName }, context) => {
       // if (context.user) {
       //   return Project.findOneAndUpdate(
@@ -123,22 +139,7 @@ const resolvers = {
   //     }
   //     throw new AuthenticationError('You need to be logged in!');
   //   },
-  //   removeProject: async (parent, { projectID }, context) => {
-  //     if (context.user) {
-  //       const project = await Project.findOneAndDelete({
-  //         _id: projectID,
-  //         projectAuthor: context.user.username,
-  //       });
 
-  //       await User.findOneAndUpdate(
-  //         { _id: context.user._id },
-  //         { $pull: { projects: project._id } }
-  //       );
-
-  //       return project;
-  //     }
-  //     throw new AuthenticationError('You need to be logged in!');
-  //   },
   //   removeFrontEnd: async (parent, { projectID, fileID }, context) => {
   //     if (context.user) {
   //       return Project.findOneAndUpdate(
