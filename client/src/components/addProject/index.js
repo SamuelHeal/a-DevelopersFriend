@@ -24,6 +24,7 @@ const AddNewProject = () => {
           });
           setProjectName('');
           setCharacterCount(0)
+          window.location.reload()
         } catch (err) {
           console.error(err);
         }

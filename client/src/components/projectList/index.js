@@ -25,6 +25,7 @@ const ProjectList = ({
         } catch (err) {
             console.error(err);
           }
+        
     }
 
     if (!projects.length) {
@@ -61,7 +62,10 @@ const ProjectList = ({
                                 <Link className='button' to={`/projects/${project._id}`}>
                                     View
                                 </Link>
-                                <a className='button' onClick={() => {deleteProject(project._id)}}>
+                                <a className='button' onClick={() => {
+                                    deleteProject(project._id);
+                                    window.location.reload()
+                                    }}>
                                     Delete
                                 </a>
                             </div>
