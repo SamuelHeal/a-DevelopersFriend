@@ -9,7 +9,7 @@ const folderSchema = new Schema({
     maxlength: 280,
     trim: true,
   },
-  folderID: {
+  projectID: {
     type: String,
     required: true,
     trim: true,

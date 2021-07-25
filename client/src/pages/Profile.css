@@ -6,6 +6,14 @@
 }
 
 .headingContainer {
+    margin-top: 50px;
     text-align: center;
-    background-color: blue;
+    color: #b4002d;
+    font-weight: bold;
+    font-size: 220%;
 }
+
+.mainListContainer {
+    width: 100%
+}
+

@@ -1,0 +1,45 @@
+.projectContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(219, 219, 219);
+}
+
+.fileContainer {
+    width: 95%;
+    /* height: 33%; */
+    margin: auto;
+    border-style: solid;
+}
+
+.folder {
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    border-style: solid;
+}
+
+.files {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.addBtn {
+    border-style: solid;
+    padding: 5px;
+    background: green;
+    cursor: pointer;
+}
+
+.addBtn:hover {
+    text-decoration: none;
+    
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
@@ -12,6 +12,7 @@ import './Profile.css'
 import Auth from '../utils/auth';
 
 const Profile = () => {
+  let history = useHistory()
   const { username: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -40,7 +41,7 @@ const Profile = () => {
     <div>
       <h2 className="headingContainer">
           {userParam ? `${user.username}'s` : 'Your'} Collections
-        </h2>
+      </h2>
       <div className='profileContainer'>
         {!userParam && (
           <div
@@ -51,7 +52,7 @@ const Profile = () => {
           </div>
         )}
         
-        <div>
+        <div className='mainListContainer'>
         
           <ProjectList 
             projects={user.projects}

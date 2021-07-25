@@ -45,3 +45,24 @@ export const REMOVE_PROJECT = gql`
     }
   }
 `
+export const ADD_FOLDER_TO_PROJECT = gql`
+  mutation addFolderToProject($folderName: String!, $projectID: ID!) {
+    addFolderToProject(folderName: $folderName, projectID: $projectID) {
+      _id
+      folderName
+      projectID
+      createdAt
+    }
+  }
+`
+
+export const REMOVE_FOLDER = gql`
+  mutation removeFolder($filter: ID!) {
+    removeFolder(folderID: $filter) {
+      _id
+      folderName
+      projectID
+      createdAt
+    }
+  }
+`

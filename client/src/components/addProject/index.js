@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_PROJECT } from '../../utils/mutations';
 
+import './addProject.css'
+
 import Auth from '../../utils/auth';
 
 const AddNewProject = () => {
@@ -11,6 +13,9 @@ const AddNewProject = () => {
     const [characterCount, setCharacterCount] = useState(0)
 
     const [addProject, { error }] = useMutation(ADD_PROJECT)
+   
+
+  
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -40,16 +45,13 @@ const AddNewProject = () => {
       };
 
       return (
-          <div>
+          <div className='formContainer'>
               <h2>Add a new collection</h2>
 
               {Auth.loggedIn() ? (
                   <>
-                    <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
-                        Character Count: {characterCount}/30
-                    </p>
                     <form className='addProjectForm' onSubmit={handleFormSubmit}>
-                        <div>
+                        <div className='formContainer'>
                             <input 
                             name='projectName' 
                             placeholder='Collection Name'
@@ -58,6 +60,9 @@ const AddNewProject = () => {
                             onChange={handleChange}
                             ></input>
                         </div>
+                        <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
+                        Character Count: {characterCount}/30
+                        </p>
                         <div>
                             <button className='button' type='submit'>
                                 Add Collection

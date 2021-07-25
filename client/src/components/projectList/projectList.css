@@ -2,31 +2,74 @@
     display: flex;
     flex-direction: row;
     flex-wrap:wrap-reverse;
-    width: 90%;
+    width: 100%;
     margin: auto;
     justify-content: center;
     align-items: center;
     text-align: center;
+
 }
 
 .collectionCard {
-    width: 30%;
-    border-style: solid;
+    width: 20%;
+    border-radius: 7px;
     margin: 30px;
-    min-width: 300px;
+    min-width: 250px;
+    background: radial-gradient(#f33f60, #b4002d);
+    padding: 10px;
+    transition: all 0.3s;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
 }
+
+.collectionCard:hover {
+    box-shadow: 0px 6px 10px #7a011f;
+    transform: scale(1.05);
+}
+
+.cardHeader {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.createdText {
+    color: black;
+    font-size: 40%;
+}
+
+.cardBody {
+    color: black;
+    position: relative;
+    top: -7px
+}
+
 
 .buttonContainer {
     width: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.button {
-    margin: auto;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: red;
-    width: 30%
+
+.closeButton {
+    color: black;
+    position: relative;
+    top: -5px;
+    background-color: none;
+    border: none;
+    transition: all 0.3s;
+}
+
+.closeButton:hover {
+    color: red;
+    text-decoration: none;
+    transform: scale(1.4);
+}
+
+
+.link:hover {
+    text-decoration: none;
 }

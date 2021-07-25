@@ -13,11 +13,15 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Header from './components/Header';
+import Project from './pages/Project'
+
+import './App.css'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
+
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
@@ -42,7 +46,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className="mainContainer">
           <Header />
           <div className="container">
             <Route exact path="/">
@@ -59,6 +63,9 @@ function App() {
             </Route>
             <Route exact path="/profiles/:username">
               <Profile />
+            </Route>
+            <Route exact path="/projects/:projectID">
+              <Project />
             </Route>
           </div>
         </div>

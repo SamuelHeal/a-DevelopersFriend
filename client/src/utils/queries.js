@@ -50,12 +50,16 @@ export const QUERY_SINGLE_PROJECT = gql`
       projectAuthor
       createdAt
       folders {
+        _id
         folderName
+        createdAt
       }
       frontEndFiles {
+        _id
         fileName
       }
       backEndFiles {
+        _id
         fileName
       }
     }

@@ -18,10 +18,10 @@ const resolvers = {
     },
     projects: async (parent, { username }) => {
       const params = username ? {username} : {};
-      return Project.find(params).sort({ createdAt: -1 })
+      return Project.find(params).sort({ createdAt: -1 }).populate('folders')
     },
     project: async (parent, { projectID }) => {
-      return Project.findOne({ _id: projectID})
+      return Project.findOne({ _id: projectID}).populate('folders')
     }
   },
 
@@ -65,34 +65,48 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // removeProject: async (parent, { projectID }, context) => {
-    //   if (context.user) {
-    //     const project = await Project.findOneAndDelete({
-    //       _id: projectID,
-    //       projectAuthor: context.user.username,
-    //     });
+    removeProject: async (parent, { projectID }, context) => {
+      if (context.user) {
+        const project = await Project.findOneAndDelete({
+          _id: projectID,
+          projectAuthor: context.user.username,
+        });
 
-    //     await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { projects: project._id } }
-    //     );
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { projects: project._id } }
+        );
 
-    //     return project;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
-    removeProject: async (parent, { projectID, projectAuthor }, context) => {
-      const project = await Project.findOneAndDelete({
-        _id: projectID
+        return project;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addFolderToProject: async (parent, { folderName, projectID }, context) => {
+      const folder = await Folder.create({
+        folderName,
+        projectID: projectID
       });
 
-      await User.findOneAndUpdate(
-        { username: projectAuthor},
-        { $pull: { projects: project._id}}
+      await Project.findOneAndUpdate(
+        { _id: projectID },
+        { $addToSet: { folders: folder._id } }
       );
 
-      return project;
+      return folder;
+    },
+    removeFolder: async (parent, { folderID }, context) => {
+      const folder = await Folder.findOneAndDelete({
+        _id: folderID,
+      });
+
+      await Project.findOneAndUpdate(
+        { projectAuthor: context.username },
+        { $pull: { projects: folderID}}
+      )
+
+      return folder
     }
+
     // addFrontEndFile: async (parent, { projectID, fileName }, context) => {
       // if (context.user) {
       //   return Project.findOneAndUpdate(
