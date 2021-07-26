@@ -43,3 +43,8 @@
     text-decoration: none;
     
 }
+
+.theFolders {
+    display: flex;
+    flex-direction: row-reverse;
+}
