@@ -65,3 +65,29 @@ export const QUERY_SINGLE_PROJECT = gql`
     }
   }
 `
+
+export const QUERY_SINGLE_FOLDER = gql`
+  query getSingleFolder($folderID: ID!) {
+    folder(folderID: $folderID) {
+      _id
+      folderName
+      projectID
+      createdAt
+      folders {
+        _id
+        folderName
+        createdAt
+      }
+      frontEndFiles {
+        _id
+        fileName
+        createdAt
+      }
+      backEndFiles {
+        _id
+        fileName
+        createdAt
+      }
+    }
+  }
+`

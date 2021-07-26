@@ -66,3 +66,14 @@ export const REMOVE_FOLDER = gql`
     }
   }
 `
+
+export const ADD_FOLDER_TO_FOLDER =gql`
+  mutation addFolderToFolder($folderName: String!, $projectID: ID!) {
+    addFolderToFolder(folderName: $folderName, projectID: $projectID) {
+      _id
+      folderName
+      projectID
+      createdAt
+    }
+  }
+`

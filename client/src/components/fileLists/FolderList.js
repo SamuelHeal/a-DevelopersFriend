@@ -37,8 +37,9 @@ function FolderList({ folders = [] }) {
         <>
             {folders && folders.map((folder) => {
                 return (
-                <Link to={`/folder/${folder._id}`}><div key={folder._id} className="folderDiv">  
-                    <div className='folderHeader'>
+                <Link key={folder._id} to={`/folder/${folder._id}`}>
+                    <div className="folderDiv">  
+                        <div className='folderHeader'>
                         <p>Created on {folder.createdAt}</p>
                         <a className='closeButton' onClick={() => {
                                     deleteFolder(folder._id);
@@ -48,7 +49,7 @@ function FolderList({ folders = [] }) {
                                     <i className="fi-rr-cross-small"></i>
                                 </a>
                     </div> 
-                    <i class="fi-rr-folder icon">
+                    <i className="fi-rr-folder icon">
                     </i>  
                     <h3>{folder.folderName}</h3>
 
