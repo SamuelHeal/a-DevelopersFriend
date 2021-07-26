@@ -1,5 +1,7 @@
 import React from 'react'
 import './FolderList.css'
+import { Link } from 'react-router-dom';
+
 
 import { useMutation } from '@apollo/client';
 
@@ -35,7 +37,7 @@ function FolderList({ folders = [] }) {
         <>
             {folders && folders.map((folder) => {
                 return (
-                <div key={folder._id} className="folderDiv">  
+                <Link to={`/folder/${folder._id}`}><div key={folder._id} className="folderDiv">  
                     <div className='folderHeader'>
                         <p>Created on {folder.createdAt}</p>
                         <a className='closeButton' onClick={() => {
@@ -52,6 +54,7 @@ function FolderList({ folders = [] }) {
 
                     
                 </div>
+                </Link>
                 )
                 
             })}

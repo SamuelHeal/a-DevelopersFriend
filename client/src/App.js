@@ -13,7 +13,8 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Header from './components/Header';
-import Project from './pages/Project'
+import Project from './pages/Project';
+import Folder from './pages/Folders'
 
 import './App.css'
 
@@ -61,11 +62,11 @@ function App() {
             <Route exact path="/me">
               <Profile />
             </Route>
-            <Route exact path="/profiles/:username">
-              <Profile />
-            </Route>
             <Route exact path="/projects/:projectID">
               <Project />
+            </Route>
+            <Route exact path='/folder/:folderID'>
+              <Folder />
             </Route>
           </div>
         </div>

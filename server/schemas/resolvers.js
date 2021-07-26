@@ -22,6 +22,9 @@ const resolvers = {
     },
     project: async (parent, { projectID }) => {
       return Project.findOne({ _id: projectID}).populate('folders')
+    },
+    folder: async (parent, { folderID }) => {
+      return Folder.findOne({ _id: folderID }).sort({ createdAt: -1 }).populate('folders')
     }
   },
 
@@ -74,8 +77,12 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { projects: project._id } }
+          { $pull: { projects: projectID } }
         );
+
+        await Folder.remove(
+          { projectID: projectID }
+        )
 
         return project;
       }
@@ -102,6 +109,19 @@ const resolvers = {
       await Project.findOneAndUpdate(
         { projectAuthor: context.username },
         { $pull: { projects: folderID}}
+      )
+
+      return folder
+    },
+    addFolderToFolder: async (parent, { folderName, projectID }, context) => {
+      const folder = await Folder.create({
+        folderName,
+        projectID,
+      })
+
+      await Folder.findOneAndUpdate(
+        { _id: projectID },
+        { $addToSet: { folders: folder._id } }
       )
 
       return folder

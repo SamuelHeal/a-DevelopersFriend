@@ -27,7 +27,7 @@ const typeDefs = gql`
   type Folder {
     _id: ID
     folderName: String
-    projectID: ID!
+    projectID: String
     createdAt: String
     folders: [Folder]!
     frontEndFiles: [FrontEnd]!
@@ -56,8 +56,7 @@ const typeDefs = gql`
     me: User
     projects(username: String): [Project]
     project(projectID: ID!): Project
-    folders(folderID: ID!): [Folder]
-    folder(_id: ID!): Folder
+    folder(folderID: ID!): Folder
   }
 
   type Mutation {
@@ -65,6 +64,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addProject(projectName: String!, projectAuthor: String!): Project
     addFolderToProject(folderName: String!, projectID: ID!): Folder
+    addFolderToFolder(folderName: String!, projectID: ID!): Folder
+
     addFrontEndFile(projectID: ID!, fileName: String!): FrontEnd
     addBackEndFile(projectID: ID!, fileName: String!): BackEnd
     removeProject(projectID: ID!): Project
