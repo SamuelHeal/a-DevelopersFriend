@@ -89,42 +89,52 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addFolderToProject: async (parent, { folderName, projectID }, context) => {
-      const folder = await Folder.create({
-        folderName,
-        projectID: projectID
-      });
+      
+      if (context.user) {
+        const folder = await Folder.create({
+          folderName,
+          projectID: projectID
+        });
 
-      await Project.findOneAndUpdate(
-        { _id: projectID },
-        { $addToSet: { folders: folder._id } }
-      );
+        await Project.findOneAndUpdate(
+          { _id: projectID },
+          { $addToSet: { folders: folder._id } }
+        );
 
-      return folder;
+        return folder;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     removeFolder: async (parent, { folderID }, context) => {
-      const folder = await Folder.findOneAndDelete({
-        _id: folderID,
-      });
+      if (context.user) {
+        const folder = await Folder.findOneAndDelete({
+          _id: folderID,
+        });
 
-      await Project.findOneAndUpdate(
-        { projectAuthor: context.username },
-        { $pull: { projects: folderID}}
-      )
+        await Project.findOneAndUpdate(
+          { projectAuthor: context.username },
+          { $pull: { projects: folderID}}
+        )
 
-      return folder
+        return folder
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     addFolderToFolder: async (parent, { folderName, projectID }, context) => {
-      const folder = await Folder.create({
-        folderName,
-        projectID,
-      })
+      if (context.user) {
+        const folder = await Folder.create({
+          folderName,
+          projectID,
+        })
 
-      await Folder.findOneAndUpdate(
-        { _id: projectID },
-        { $addToSet: { folders: folder._id } }
-      )
+        await Folder.findOneAndUpdate(
+          { _id: projectID },
+          { $addToSet: { folders: folder._id } }
+        )
 
-      return folder
+        return 
+      }
+      throw new AuthenticationError('You need to be logged in!');
     }
 
     // addFrontEndFile: async (parent, { projectID, fileName }, context) => {

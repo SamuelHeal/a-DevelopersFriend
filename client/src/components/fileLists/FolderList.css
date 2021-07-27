@@ -6,8 +6,8 @@
     align-items: center;
     border-radius: 7px;
     min-width: 150px;
-    height: 150px;
-    background: radial-gradient(#24afda, #4c5cec);
+    height: 100px;
+    /* background: radial-gradient(#24afda, #4c5cec); */
     margin: 20px;
     padding: 10px;
     color: black;
@@ -27,7 +27,7 @@
 }
 
 .closeButton {
-    color: black;
+    color: aliceblue;
     position: relative;
     top: -5px;
     background-color: none;

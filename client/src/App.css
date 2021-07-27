@@ -1,8 +1,21 @@
+:root {
+    --backgroundColour: #191919;
+    --textColour: rgb(182, 180, 180);
+    --titleColour: rgb(207, 228, 247);
+    --secondaryColour: #479761
+    
+}
+
+
 body {
-    background-color: #1A1A1D;
+    background-color: var(--backgroundColour);
 }
 
 .container {
     width: 95vw;
     margin: auto;
+}
+
+.link:hover {
+    text-decoration: none;
 }

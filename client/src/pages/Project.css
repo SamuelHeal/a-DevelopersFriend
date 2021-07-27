@@ -4,14 +4,17 @@
     margin: 0px;
     width: 100%;
     padding: 20px;
-    background-color: rgb(219, 219, 219);
+    border-radius: 7px;
+    height: 80vh;
+    background-color: aliceblue;
 }
 
 .fileContainer {
     width: 95%;
-    /* height: 33%; */
+    height: 33%;
     margin: auto;
     border-style: solid;
+    border-radius: 7px;
 }
 
 .folder {
@@ -30,7 +33,6 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    border-style: solid;
 }
 
 .addBtn {

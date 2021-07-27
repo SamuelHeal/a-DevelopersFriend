@@ -38,8 +38,9 @@ const ProjectList = ({
             <div className='listContainer'>
                 {showTitle && <h3>{title}</h3>}
                 {projects && projects.map((project) => (
-                    <Link className='link' to={`/projects/${project._id}`}>
+                    
                     <div key={project._id} className='collectionCard'>
+                        <Link className='link' to={`/projects/${project._id}`}>
                         {showUsername ? (
                             <div className='cardHeader'>
                                 <Link to={`/profiles/${project.projectAuthor}`}>
@@ -60,9 +61,10 @@ const ProjectList = ({
                         )}
                         <div className='cardBody'>
                             <h2>{project.projectName}</h2>
-                        </div>              
+                        </div>  
+                        </Link>            
                     </div>
-                    </Link>
+                    
                 ))}
             </div>
         )

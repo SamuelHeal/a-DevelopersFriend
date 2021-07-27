@@ -37,10 +37,10 @@ function FolderList({ folders = [] }) {
         <>
             {folders && folders.map((folder) => {
                 return (
-                <Link key={folder._id} to={`/folder/${folder._id}`}>
                     <div className="folderDiv">  
+                        <Link className='link' key={folder._id} to={`/folder/${folder._id}`}>
                         <div className='folderHeader'>
-                        <p>Created on {folder.createdAt}</p>
+                        {/* <p>Created on {folder.createdAt}</p> */}
                         <a className='closeButton' onClick={() => {
                                     deleteFolder(folder._id);
                                     window.location.reload()
@@ -53,9 +53,9 @@ function FolderList({ folders = [] }) {
                     </i>  
                     <h3>{folder.folderName}</h3>
 
-                    
+                    </Link>
                 </div>
-                </Link>
+               
                 )
                 
             })}

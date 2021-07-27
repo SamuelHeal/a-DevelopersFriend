@@ -1,4 +1,5 @@
 import React, { useState} from 'react'
+
 import './Project.css'
 
 import { useParams } from 'react-router-dom';
@@ -11,6 +12,7 @@ import { ADD_FOLDER_TO_PROJECT } from '../utils/mutations';
 
 
 import FolderList from '../components/fileLists/FolderList'
+import FolderModal from '../components/Modal/FolderModal'
 
 
 const SingleProject = () => {
@@ -60,40 +62,18 @@ const SingleProject = () => {
         return <div>Loading...</div>;
     }
 
+
     return (
         <div className='projectContainer'> 
             <div className='fileContainer'>
                 <h3>Folders</h3>
                 <div className='files'>
                     <div>
-                    <form className='addFolderForm' onSubmit={handleFormSubmit}>
-                        <div className='formContainer'>
-                            <input 
-                            name='folderName' 
-                            placeholder='Folder Name'
-                            value={folderName}
-                            className='projectInput'
-                            onChange={handleChange}
-                            ></input>
-                        </div>
-                        <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
-                        Character Count: {characterCount}/30
-                        </p>
-                        <div>
-                            <button className='button' type='submit'>
-                                Add Folder
-                            </button>
-                        </div>
-                        {error && (
-                        <div className="errorMessage">
-                            {error.message}
-                        </div>
-                        )}
-                    </form>
+                        <FolderModal />
                     </div>
-                    <div className='theFolders'>
-                        <FolderList folders={projects.folders}/>
-                    </div>
+
+                    <FolderList folders={projects.folders}/>
+
                     
 
                 </div>
