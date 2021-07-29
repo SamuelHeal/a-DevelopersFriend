@@ -72,7 +72,10 @@ const typeDefs = gql`
     addFolderToProject(folderName: String!, projectID: ID!): Folder
     addFolderToFolder(folderName: String!, projectID: ID!): Folder
     addFrontEndFileToProject(projectID: ID!, fileName: String!): FrontEndFile
+    addFrontEndFileToFolder(projectID: ID!, fileName: String!): FrontEndFile
     addBackEndFileToProject(projectID: ID!, fileName: String!): BackEndFile
+    addBackEndFileToFolder(projectID: ID!, fileName: String!): BackEndFile
+
 
 
     removeProject(projectID: ID!): Project
@@ -80,6 +83,10 @@ const typeDefs = gql`
     removeFolderFromFolder(folderID: ID!, projectID: ID!): Folder
     removeFrontEndFile(fileID: ID!, projectID: ID!): FrontEndFile
     removeBackEndFile(fileID: ID!, projectID: ID!): BackEndFile
+    removeFrontEndFileFromFolder(fileID: ID!, projectID: ID!): FrontEndFile
+    removeBackEndFileFromFolder(fileID: ID!, projectID: ID!): BackEndFile
+
+
   }
 `;
 

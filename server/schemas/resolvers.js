@@ -172,6 +172,23 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
 
     },
+    addFrontEndFileToFolder: async(parent, { projectID, fileName }, context) => {
+      if (context.user) {
+        const file = await FrontEndFile.create({
+          fileName,
+          projectID: projectID
+        })
+  
+        await Folder.findOneAndUpdate(
+          { _id: projectID },
+          { $addToSet: { frontEndFiles: file._id }}
+        )
+  
+        return file
+        }
+        throw new AuthenticationError('You need to be logged in!');
+  
+      },
 
     removeFrontEndFile: async(parent, { fileID, projectID }, context) => {
     if (context.user) {
@@ -183,6 +200,18 @@ const resolvers = {
         { _id: projectID },
         { $pull: { frontEndFiles: fileID}}
       )
+
+      return file
+    }
+
+      throw new AuthenticationError('You need to be logged in!');
+
+  },
+  removeFrontEndFileFromFolder: async(parent, { fileID, projectID }, context) => {
+    if (context.user) {
+      const file = await FrontEndFile.findOneAndDelete({
+        fileID
+      })
 
       await Folder.findOneAndUpdate(
         { _id: projectID },
@@ -215,6 +244,24 @@ const resolvers = {
 
     },
 
+    addBackEndFileToFolder: async(parent, { projectID, fileName }, context) => {
+      if (context.user) {
+        const file = await BackEndFile.create({
+          fileName,
+          projectID,
+        })
+  
+        await Folder.findOneAndUpdate(
+          { _id: projectID },
+          { $addToSet: { backEndFiles: file._id }}
+        )
+  
+          return file
+        }
+        throw new AuthenticationError('You need to be logged in!');
+  
+      },
+
     removeBackEndFile: async(parent, { fileID, projectID }, context) => {
       if (context.user) {
         const file = await BackEndFile.findOneAndDelete({
@@ -225,6 +272,18 @@ const resolvers = {
           { _id: projectID },
           { $pull: { backEndFiles: fileID}}
         )
+  
+        return file
+      }
+  
+        throw new AuthenticationError('You need to be logged in!');
+  
+    },
+    removeBackEndFileFromFolder: async(parent, { fileID, projectID }, context) => {
+      if (context.user) {
+        const file = await BackEndFile.findOneAndDelete({
+          fileID
+        })
   
         await Folder.findOneAndUpdate(
           { _id: projectID },
@@ -238,22 +297,7 @@ const resolvers = {
   
     },
 
-  //   removeFrontEnd: async (parent, { projectID, fileID }, context) => {
-  //     if (context.user) {
-  //       return Project.findOneAndUpdate(
-  //         { _id: projectID },
-  //         {
-  //           $pull: {
-  //             frontEndFiles: {
-  //               _id: fileID,
-  //             },
-  //           },
-  //         },
-  //         { new: true }
-  //       );
-  //     }
-  //     throw new AuthenticationError('You need to be logged in!');
-  //   },
+
   //   removeBackEnd: async (parent, { projectID, fileID }, context) => {
   //     if (context.user) {
   //       return Project.findOneAndUpdate(

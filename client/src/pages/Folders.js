@@ -10,7 +10,10 @@ import { QUERY_SINGLE_FOLDER} from '../utils/queries';
 
 import FolderList from '../components/fileLists/FolderList'
 import FolderInFolderModal from '../components/Modal/FolderInFolderModal';
-import FrontEndFileList from '../components/fileLists/FrontEndFileList';
+import FrontEndInFolderList from '../components/fileLists/FrontEndInFolderList';
+import FrontEndFolderModal from '../components/Modal/FrontEndFolderModal'
+import BackEndInFolderList from '../components/fileLists/BackEndInFolderList'
+import BackEndFolderModal from '../components/Modal/BackEndFolderModal';
 
 
 function Folders() {
@@ -22,6 +25,7 @@ function Folders() {
     })
 
     const folders = data?.folder || {};    
+    console.log(folders.frontEndFiles)
 
     if (loading) {
         return <div>Loading...</div>;
@@ -44,9 +48,9 @@ function Folders() {
             <div className='fileContainer'>
                 <h3>Front End Files</h3>
                 <div className='files'>
-                    
+                    <FrontEndFolderModal />
                     <div className='theFolders'>
-                        <FrontEndFileList folders={folders.frontEndFiles}/>
+                        <FrontEndInFolderList files={folders.frontEndFiles}/>
                     </div>
                 </div>
                 
@@ -54,6 +58,10 @@ function Folders() {
             <div className='fileContainer'>
                 <h3>Back End Files</h3>
                 <div className='files'>
+                    <BackEndFolderModal />
+                    <div className='theFolders'>
+                        <BackEndInFolderList files={folders.backEndFiles}/>
+                    </div>
                     
                 </div>
                 

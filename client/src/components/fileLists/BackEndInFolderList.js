@@ -7,21 +7,21 @@ import { Link, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 
-import { REMOVE_BACK_END_FILE } from '../../utils/mutations';
+import { REMOVE_BACK_END_FILE_FROM_FOLDER } from '../../utils/mutations';
 
-function BackEndFileList({ files = [] }) {
+function FrontEndInFolderList({ files = [] }) {
 
-    const [removeBackFile, { error }] = useMutation(REMOVE_BACK_END_FILE)
+    const [removeBackFileFromFolder, { error }] = useMutation(REMOVE_BACK_END_FILE_FROM_FOLDER)
     
-    const { projectID } = useParams()
+    const { folderID } = useParams()
     
     
-    const deleteBackFile = async (fileID) => {
+    const deleteBackFileFromFolder = async (fileID) => {
         try {
-            const { data } = await removeBackFile({
+            const { data } = await removeBackFileFromFolder({
                 variables: { 
                     filter: fileID,
-                    projectID: projectID
+                    projectID: folderID
                 }
             })
 
@@ -44,7 +44,7 @@ function BackEndFileList({ files = [] }) {
                         <Link className='link' to={`/frontfile/${file._id}`}>
                         <div className='folderHeader'>
                         <a className='closeButtonFolder' onClick={() => {
-                                    deleteBackFile(file._id);
+                                    deleteBackFileFromFolder(file._id);
                                     window.location.reload()
                                     
                                     }}>
@@ -65,4 +65,4 @@ function BackEndFileList({ files = [] }) {
     )
 }
 
-export default BackEndFileList
+export default FrontEndInFolderList

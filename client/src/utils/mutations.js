@@ -92,6 +92,20 @@ export const ADD_FRONT_END_FILE_TO_PROJECT = gql`
   }
 `
 
+export const ADD_FRONT_END_FILE_TO_FOLDER = gql`
+  mutation addFrontEndFileToFolder($projectID: ID!, $fileName: String!) {
+    addFrontEndFileToFolder(projectID: $projectID, fileName: $fileName) {
+      _id
+      fileName
+      projectID
+      createdAt
+      html
+      css
+      javascript
+    }
+  }
+`
+
 export const ADD_BACK_END_FILE_TO_PROJECT = gql`
   mutation addBackEndFileToProject($projectID: ID!, $fileName: String!) {
     addBackEndFileToProject(projectID: $projectID, fileName: $fileName) {
@@ -103,6 +117,20 @@ export const ADD_BACK_END_FILE_TO_PROJECT = gql`
     }
   }
 `
+
+export const ADD_BACK_END_FILE_TO_FOLDER = gql`
+  mutation addBackEndFileToFolder($projectID: ID!, $fileName: String!) {
+    addBackEndFileToFolder(projectID: $projectID, fileName: $fileName) {
+      _id
+      fileName
+      projectID
+      createdAt
+      javascript
+    }
+  }
+`
+
+
 
 export const REMOVE_FOLDER_FROM_FOLDER = gql`
 mutation removeFolderFromFolder($filter: ID!, $projectID: ID!) {
@@ -129,9 +157,35 @@ export const REMOVE_FRONT_END_FILE = gql`
   }
 `
 
+export const REMOVE_FRONT_END_FILE_FROM_FOLDER = gql`
+  mutation removeFrontEndFileFromFolder($filter: ID!, $projectID: ID!) {
+    removeFrontEndFileFromFolder(fileID: $filter, projectID: $projectID) {
+      _id
+      fileName
+      projectID
+      createdAt
+      html
+      css
+      javascript
+    }
+  }
+`
+
 export const REMOVE_BACK_END_FILE = gql`
   mutation removeBackEndFile($filter: ID!, $projectID: ID!) {
     removeBackEndFile(fileID: $filter, projectID: $projectID) {
+      _id
+      fileName
+      projectID
+      createdAt
+      javascript
+    }
+  }
+`
+
+export const REMOVE_BACK_END_FILE_FROM_FOLDER = gql`
+  mutation removeBackEndFileFromFolder($filter: ID!, $projectID: ID!) {
+    removeBackEndFileFromFolder(fileID: $filter, projectID: $projectID) {
       _id
       fileName
       projectID
