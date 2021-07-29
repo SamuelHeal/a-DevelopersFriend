@@ -7,29 +7,29 @@ import { Link, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 
-// import { REMOVE_FRONT_END_FILE } from '../../utils/mutations';
+import { REMOVE_BACK_END_FILE } from '../../utils/mutations';
 
 function FrontEndFileList({ files = [] }) {
 
-    // const [removeFile, { error }] = useMutation(REMOVE_FRONT_END_FILE)
+    const [removeBackFile, { error }] = useMutation(REMOVE_BACK_END_FILE)
     
-    // const { projectID } = useParams()
+    const { projectID } = useParams()
     
     
-    // const deleteFile = async (fileID) => {
-    //     try {
-    //         const { data } = await removeFile({
-    //             variables: { 
-    //                 filter: fileID,
-    //                 projectID: projectID
-    //             }
-    //         })
+    const deleteBackFile = async (fileID) => {
+        try {
+            const { data } = await removeBackFile({
+                variables: { 
+                    filter: fileID,
+                    projectID: projectID
+                }
+            })
 
-    //     } catch (err) {
-    //         console.error(err);
-    //       }
+        } catch (err) {
+            console.error(err);
+          }
         
-    // }
+    }
 
     if (!files.length) {
         return (
@@ -43,7 +43,11 @@ function FrontEndFileList({ files = [] }) {
                     <div key={file._id} className="folderDiv">  
                         <Link className='link' to={`/frontfile/${file._id}`}>
                         <div className='folderHeader'>
-                        <a className='closeButtonFolder'>
+                        <a className='closeButtonFolder' onClick={() => {
+                                    deleteBackFile(file._id);
+                                    window.location.reload()
+                                    
+                                    }}>
                                     <i className="fi-rr-cross-small"></i>
                                 </a>
                     </div> 

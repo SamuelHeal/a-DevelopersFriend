@@ -50,7 +50,6 @@ const typeDefs = gql`
     projectID: String
     createdAt: String
     javascript: String
-    
   }
 
   type Query {
@@ -67,16 +66,20 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+
+    
     addProject(projectName: String!, projectAuthor: String!): Project
     addFolderToProject(folderName: String!, projectID: ID!): Folder
     addFolderToFolder(folderName: String!, projectID: ID!): Folder
     addFrontEndFileToProject(projectID: ID!, fileName: String!): FrontEndFile
     addBackEndFileToProject(projectID: ID!, fileName: String!): BackEndFile
+
+
     removeProject(projectID: ID!): Project
     removeFolder(folderID: ID!): Folder
     removeFolderFromFolder(folderID: ID!, projectID: ID!): Folder
     removeFrontEndFile(fileID: ID!, projectID: ID!): FrontEndFile
-    removeBackEndFile(projectID: ID!, fileID: ID!): Project
+    removeBackEndFile(fileID: ID!, projectID: ID!): BackEndFile
   }
 `;
 

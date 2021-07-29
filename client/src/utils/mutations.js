@@ -128,3 +128,15 @@ export const REMOVE_FRONT_END_FILE = gql`
     }
   }
 `
+
+export const REMOVE_BACK_END_FILE = gql`
+  mutation removeBackEndFile($filter: ID!, $projectID: ID!) {
+    removeBackEndFile(fileID: $filter, projectID: $projectID) {
+      _id
+      fileName
+      projectID
+      createdAt
+      javascript
+    }
+  }
+`

@@ -11,14 +11,14 @@ import { REMOVE_FRONT_END_FILE } from '../../utils/mutations';
 
 function FrontEndFileList({ files = [] }) {
 
-    const [removeFile, { error }] = useMutation(REMOVE_FRONT_END_FILE)
+    const [removeFrontFile, { error }] = useMutation(REMOVE_FRONT_END_FILE)
     
     const { projectID } = useParams()
     
     
-    const deleteFile = async (fileID) => {
+    const deleteFrontFile = async (fileID) => {
         try {
-            const { data } = await removeFile({
+            const { data } = await removeFrontFile({
                 variables: { 
                     filter: fileID,
                     projectID: projectID
@@ -44,7 +44,7 @@ function FrontEndFileList({ files = [] }) {
                         <Link className='link' to={`/frontfile/${file._id}`}>
                         <div className='folderHeader'>
                         <a className='closeButtonFolder' onClick={() => {
-                                    deleteFile(file._id);
+                                    deleteFrontFile(file._id);
                                     window.location.reload()
                                     
                                     }}>
