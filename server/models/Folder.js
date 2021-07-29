@@ -33,21 +33,8 @@ const folderSchema = new Schema({
   ],
   backEndFiles: [
     {
-      fileName: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      javascript: {
-        type: String,
-        required: false,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'BackEndFile'
     },
   ],
 });

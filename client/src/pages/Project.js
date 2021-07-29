@@ -13,6 +13,7 @@ import FolderList from '../components/fileLists/FolderList'
 import FolderModal from '../components/Modal/FolderModal'
 import FrontEndFileList from '../components/fileLists/FrontEndFileList'
 import FrontEndModal from '../components/Modal/FrontEndModal'
+import BackEndModal from '../components/Modal/BackEndModal'
 
 
 const SingleProject = () => {
@@ -62,6 +63,10 @@ const SingleProject = () => {
             <div className='fileContainer'>
                 <h3>Back End Files</h3>
                 <div className='files'>
+                    <div>
+                        <BackEndModal />
+                    </div>
+                    <FrontEndFileList files={projects.backEndFiles} />
                     
                 </div>
                 

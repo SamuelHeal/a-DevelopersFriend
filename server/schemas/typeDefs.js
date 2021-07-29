@@ -21,7 +21,7 @@ const typeDefs = gql`
     createdAt: String
     folders: [Folder]!
     frontEndFiles: [FrontEndFile]!
-    backEndFiles: [BackEnd]!
+    backEndFiles: [BackEndFile]!
   }
 
   type Folder {
@@ -31,7 +31,7 @@ const typeDefs = gql`
     createdAt: String
     folders: [Folder]!
     frontEndFiles: [FrontEndFile]!
-    backEndFiles: [BackEnd]!
+    backEndFiles: [BackEndFile]!
   }
 
   type FrontEndFile {
@@ -44,11 +44,13 @@ const typeDefs = gql`
     javascript: String
   }
 
-  type BackEnd {
+  type BackEndFile {
     _id: ID
     fileName: String
-    javascript: String
+    projectID: String
     createdAt: String
+    javascript: String
+    
   }
 
   type Query {
@@ -59,6 +61,7 @@ const typeDefs = gql`
     project(projectID: ID!): Project
     folder(folderID: ID!): Folder
     frontEndFile(fileID: ID!): FrontEndFile
+    backEndFile(fileID: ID!): BackEndFile
   }
 
   type Mutation {
@@ -68,12 +71,12 @@ const typeDefs = gql`
     addFolderToProject(folderName: String!, projectID: ID!): Folder
     addFolderToFolder(folderName: String!, projectID: ID!): Folder
     addFrontEndFileToProject(projectID: ID!, fileName: String!): FrontEndFile
-    addBackEndFile(projectID: ID!, fileName: String!): BackEnd
+    addBackEndFileToProject(projectID: ID!, fileName: String!): BackEndFile
     removeProject(projectID: ID!): Project
     removeFolder(folderID: ID!): Folder
     removeFolderFromFolder(folderID: ID!, projectID: ID!): Folder
     removeFrontEndFile(fileID: ID!, projectID: ID!): FrontEndFile
-    removeBackEnd(projectID: ID!, fileID: ID!): Project
+    removeBackEndFile(projectID: ID!, fileID: ID!): Project
   }
 `;
 

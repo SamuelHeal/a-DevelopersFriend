@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Project, Folder, FrontEndFile } = require('../models');
+const { User, Project, Folder, FrontEndFile, BackEndFile } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -18,13 +18,13 @@ const resolvers = {
     },
     projects: async (parent, { username }) => {
       const params = username ? {username} : {};
-      return Project.find(params).sort({ createdAt: -1 }).populate('folders').populate('frontEndFiles')
+      return Project.find(params).sort({ createdAt: -1 }).populate('folders').populate('frontEndFiles').populate('backEndFiles')
     },
     project: async (parent, { projectID }) => {
-      return Project.findOne({ _id: projectID}).populate('folders').populate('frontEndFiles')
+      return Project.findOne({ _id: projectID}).populate('folders').populate('frontEndFiles').populate('backEndFiles')
     },
     folder: async (parent, { folderID }) => {
-      return Folder.findOne({ _id: folderID }).sort({ createdAt: -1 }).populate('folders')
+      return Folder.findOne({ _id: folderID }).sort({ createdAt: -1 }).populate('folders').populate('frontEndFiles').populate('backEndFiles')
     }
   },
 
@@ -156,6 +156,7 @@ const resolvers = {
     },
 
     addFrontEndFileToProject: async(parent, { projectID, fileName }, context) => {
+    if (context.user) {
       const file = await FrontEndFile.create({
         fileName,
         projectID,
@@ -167,9 +168,13 @@ const resolvers = {
       )
 
       return file
+      }
+      throw new AuthenticationError('You need to be logged in!');
+
     },
 
     removeFrontEndFile: async(parent, { fileID, projectID }, context) => {
+    if (context.user) {
       const file = await FrontEndFile.findOneAndDelete({
         fileID
       })
@@ -179,60 +184,36 @@ const resolvers = {
         { $pull: { frontEndFiles: fileID}}
       )
 
-      // await Folder.findOneAndUpdate(
-      //   { _id: projectID },
-      //   { $pull: { frontEndFiles: fileID}}
-      // )
+      await Folder.findOneAndUpdate(
+        { _id: projectID },
+        { $pull: { frontEndFiles: fileID}}
+      )
 
       return file
     }
 
-    // addFrontEndFile: async (parent, { projectID, fileName }, context) => {
-      // if (context.user) {
-      //   return Project.findOneAndUpdate(
-      //     { _id: projectID },
-      //     {
-      //       $addToSet: {
-      //         frontEndFiles: { fileName },
-      //       },
-      //     },
-      //     {
-      //       new: true,
-      //       runValidators: true,
-      //     }
-      //   );
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
-  //     return Project.findOneAndUpdate(
-  //       { _id: projectID },
-  //       {
-  //         $addToSet: {
-  //           frontEndFiles: { fileName },
-  //         },
-  //       },
-  //       {
-  //         new: true,
-  //         runValidators: true,
-  //       }
-  //     );
-  //   },
-  //   addBackEndFile: async (parent, { projectID, fileName}, context) => {
-  //     if (context.user) {
-  //       return Project.findOneAndUpdate(
-  //         { _id: projectID },
-  //         {
-  //           $addToSet: {
-  //             backEndFiles: { fileName },
-  //           },
-  //         },
-  //         {
-  //           new: true,
-  //           runValidators: true,
-  //         }
-  //       );
-  //     }
-  //     throw new AuthenticationError('You need to be logged in!');
-  //   },
+      throw new AuthenticationError('You need to be logged in!');
+
+  },
+
+    
+  addBackEndFileToProject: async(parent, { projectID, fileName }, context) => {
+    if (context.user) {
+      const file = await BackEndFile.create({
+        fileName,
+        projectID,
+      })
+
+      await Project.findOneAndUpdate(
+        { _id: projectID },
+        { $addToSet: { backEndFiles: file._id }}
+      )
+
+        return file
+      }
+      throw new AuthenticationError('You need to be logged in!');
+
+    },
 
   //   removeFrontEnd: async (parent, { projectID, fileID }, context) => {
   //     if (context.user) {

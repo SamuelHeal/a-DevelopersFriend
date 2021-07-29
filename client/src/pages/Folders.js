@@ -7,10 +7,10 @@ import { useMutation } from '@apollo/client';
 
 
 import { QUERY_SINGLE_FOLDER} from '../utils/queries';
-import { ADD_FOLDER_TO_FOLDER } from '../utils/mutations';
 
 import FolderList from '../components/fileLists/FolderList'
 import FolderInFolderModal from '../components/Modal/FolderInFolderModal';
+import FrontEndFileList from '../components/fileLists/FrontEndFileList';
 
 
 function Folders() {
@@ -45,6 +45,9 @@ function Folders() {
                 <h3>Front End Files</h3>
                 <div className='files'>
                     
+                    <div className='theFolders'>
+                        <FrontEndFileList folders={folders.frontEndFiles}/>
+                    </div>
                 </div>
                 
             </div>

@@ -92,6 +92,18 @@ export const ADD_FRONT_END_FILE_TO_PROJECT = gql`
   }
 `
 
+export const ADD_BACK_END_FILE_TO_PROJECT = gql`
+  mutation addBackEndFileToProject($projectID: ID!, $fileName: String!) {
+    addBackEndFileToProject(projectID: $projectID, fileName: $fileName) {
+      _id
+      fileName
+      projectID
+      createdAt
+      javascript
+    }
+  }
+`
+
 export const REMOVE_FOLDER_FROM_FOLDER = gql`
 mutation removeFolderFromFolder($filter: ID!, $projectID: ID!) {
   removeFolder(folderID: $filter, projectID: $projectID) {
