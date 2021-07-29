@@ -77,3 +77,42 @@ export const ADD_FOLDER_TO_FOLDER =gql`
     }
   }
 `
+
+export const ADD_FRONT_END_FILE_TO_PROJECT = gql`
+  mutation addFrontEndFileToProject($projectID: ID!, $fileName: String!) {
+    addFrontEndFileToProject(projectID: $projectID, fileName: $fileName) {
+      _id
+      fileName
+      projectID
+      createdAt
+      html
+      css
+      javascript
+    }
+  }
+`
+
+export const REMOVE_FOLDER_FROM_FOLDER = gql`
+mutation removeFolderFromFolder($filter: ID!, $projectID: ID!) {
+  removeFolder(folderID: $filter, projectID: $projectID) {
+    _id
+    folderName
+    projectID
+    createdAt
+  }
+}
+`
+
+export const REMOVE_FRONT_END_FILE = gql`
+  mutation removeFrontEndFile($filter: ID!, $projectID: ID!) {
+    removeFrontEndFile(fileID: $filter, projectID: $projectID) {
+      _id
+      fileName
+      projectID
+      createdAt
+      html
+      css
+      javascript
+    }
+  }
+`

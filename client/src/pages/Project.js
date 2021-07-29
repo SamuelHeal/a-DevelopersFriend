@@ -1,55 +1,24 @@
-import React, { useState} from 'react'
+import React from 'react'
 
 import './Project.css'
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { useMutation } from '@apollo/client';
 
 
 import { QUERY_SINGLE_PROJECT} from '../utils/queries';
-import { ADD_FOLDER_TO_PROJECT } from '../utils/mutations';
 
 
 import FolderList from '../components/fileLists/FolderList'
 import FolderModal from '../components/Modal/FolderModal'
+import FrontEndFileList from '../components/fileLists/FrontEndFileList'
+import FrontEndModal from '../components/Modal/FrontEndModal'
 
 
 const SingleProject = () => {
 
-    const [folderName, setFolderName] = useState('')
-    const [characterCount, setCharacterCount] = useState(0)
-
     const { projectID } = useParams()
 
-    const [addFolder, { error }] = useMutation(ADD_FOLDER_TO_PROJECT)
-
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-    
-        try {
-          const { data } = await addFolder({
-            variables: {
-              folderName,
-              projectID: projectID,
-            },
-          });
-          setFolderName('');
-          setCharacterCount(0)
-          window.location.reload()
-        } catch (err) {
-          console.error(err);
-        }
-      };
-
-      const handleChange = (event) => {
-        const { name, value } = event.target;
-    
-        if (name === 'folderName' && value.length <= 30) {
-            setFolderName(value);
-          setCharacterCount(value.length);
-        }
-      };
 
     const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectID: projectID }
@@ -82,6 +51,10 @@ const SingleProject = () => {
             <div className='fileContainer'>
                 <h3>Front End Files</h3>
                 <div className='files'>
+                    <div>
+                        <FrontEndModal />
+                    </div>
+                    <FrontEndFileList files={projects.frontEndFiles} />
                     
                 </div>
                 

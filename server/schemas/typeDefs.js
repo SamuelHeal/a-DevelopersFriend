@@ -20,7 +20,7 @@ const typeDefs = gql`
     projectAuthor: String
     createdAt: String
     folders: [Folder]!
-    frontEndFiles: [FrontEnd]!
+    frontEndFiles: [FrontEndFile]!
     backEndFiles: [BackEnd]!
   }
 
@@ -30,17 +30,18 @@ const typeDefs = gql`
     projectID: String
     createdAt: String
     folders: [Folder]!
-    frontEndFiles: [FrontEnd]!
+    frontEndFiles: [FrontEndFile]!
     backEndFiles: [BackEnd]!
   }
 
-  type FrontEnd {
+  type FrontEndFile {
     _id: ID
     fileName: String
+    projectID: String
+    createdAt: String
     html: String
     css: String
     javascript: String
-    createdAt: String
   }
 
   type BackEnd {
@@ -57,6 +58,7 @@ const typeDefs = gql`
     projects(username: String): [Project]
     project(projectID: ID!): Project
     folder(folderID: ID!): Folder
+    frontEndFile(fileID: ID!): FrontEndFile
   }
 
   type Mutation {
@@ -65,12 +67,12 @@ const typeDefs = gql`
     addProject(projectName: String!, projectAuthor: String!): Project
     addFolderToProject(folderName: String!, projectID: ID!): Folder
     addFolderToFolder(folderName: String!, projectID: ID!): Folder
-
-    addFrontEndFile(projectID: ID!, fileName: String!): FrontEnd
+    addFrontEndFileToProject(projectID: ID!, fileName: String!): FrontEndFile
     addBackEndFile(projectID: ID!, fileName: String!): BackEnd
     removeProject(projectID: ID!): Project
     removeFolder(folderID: ID!): Folder
-    removeFrontEnd(projectID: ID!, fileID: ID!): Project
+    removeFolderFromFolder(folderID: ID!, projectID: ID!): Folder
+    removeFrontEndFile(fileID: ID!, projectID: ID!): FrontEndFile
     removeBackEnd(projectID: ID!, fileID: ID!): Project
   }
 `;

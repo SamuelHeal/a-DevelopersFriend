@@ -27,29 +27,8 @@ const projectSchema = new Schema({
   ],
   frontEndFiles: [
     {
-      fileName: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      html: {
-        type: String,
-        required: false,
-      },
-      css: {
-        type: String,
-        required: false,
-      },
-      javascript: {
-        type: String,
-        required: false,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'FrontEndFile'
     },
   ],
   backEndFiles: [

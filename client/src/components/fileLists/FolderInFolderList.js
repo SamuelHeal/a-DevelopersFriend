@@ -1,24 +1,32 @@
 import React from 'react'
 import './FolderList.css'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 
 
 import { useMutation } from '@apollo/client';
 
 
-import { REMOVE_FOLDER } from '../../utils/mutations';
+import { REMOVE_FOLDER_FROM_FOLDER } from '../../utils/mutations';
 
 
 function FolderList({ folders = [] }) {
 
-    const [removeFolder, { error }] = useMutation(REMOVE_FOLDER)
+    const { projectID } = useParams()
+
+
+    const [removeFolder, { error }] = useMutation(REMOVE_FOLDER_FROM_FOLDER)
 
     
     
     const deleteFolder = async (folderID) => {
         try {
             const { data } = await removeFolder({
-                variables: { filter: folderID }
+                variables: { 
+                    filter: folderID,
+                    projectID: projectID
+                }
             })
 
         } catch (err) {
@@ -40,9 +48,8 @@ function FolderList({ folders = [] }) {
                     <div  key={folder._id} className="folderDiv">  
                         <Link className='link' to={`/folder/${folder._id}`}>
                         <div className='folderHeader'>
-                        {/* <p>Created on {folder.createdAt}</p> */}
                         <a className='closeButtonFolder' onClick={() => {
-                                    deleteFolder(folder._id);
+                                    deleteFolder(folder._id, folder.projectID);
                                     window.location.reload()
                                     
                                     }}>

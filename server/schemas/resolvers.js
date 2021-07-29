@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Project, Folder } = require('../models');
+const { User, Project, Folder, FrontEndFile } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -18,10 +18,10 @@ const resolvers = {
     },
     projects: async (parent, { username }) => {
       const params = username ? {username} : {};
-      return Project.find(params).sort({ createdAt: -1 }).populate('folders')
+      return Project.find(params).sort({ createdAt: -1 }).populate('folders').populate('frontEndFiles')
     },
     project: async (parent, { projectID }) => {
-      return Project.findOne({ _id: projectID}).populate('folders')
+      return Project.findOne({ _id: projectID}).populate('folders').populate('frontEndFiles')
     },
     folder: async (parent, { folderID }) => {
       return Folder.findOne({ _id: folderID }).sort({ createdAt: -1 }).populate('folders')
@@ -115,6 +115,7 @@ const resolvers = {
           { projectAuthor: context.username },
           { $pull: { projects: folderID}}
         )
+        
 
         return folder
       }
@@ -132,9 +133,58 @@ const resolvers = {
           { $addToSet: { folders: folder._id } }
         )
 
-        return 
+        return folder
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+
+    removeFolderFromFolder: async (parent, { folderID, projectID }, context) => {
+      if (context.user) {
+        const folder = await Folder.findOneAndDelete({
+          _id: folderID,
+        });
+
+        await Folder.findOneAndUpdate(
+          { _id: projectID },
+          { $pull: { folders: folderID}}
+        )
+        
+
+        return folder
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    addFrontEndFileToProject: async(parent, { projectID, fileName }, context) => {
+      const file = await FrontEndFile.create({
+        fileName,
+        projectID,
+      })
+
+      await Project.findOneAndUpdate(
+        { _id: projectID },
+        { $addToSet: { frontEndFiles: file._id }}
+      )
+
+      return file
+    },
+
+    removeFrontEndFile: async(parent, { fileID, projectID }, context) => {
+      const file = await FrontEndFile.findOneAndDelete({
+        fileID
+      })
+
+      await Project.findOneAndUpdate(
+        { _id: projectID },
+        { $pull: { frontEndFiles: fileID}}
+      )
+
+      // await Folder.findOneAndUpdate(
+      //   { _id: projectID },
+      //   { $pull: { frontEndFiles: fileID}}
+      // )
+
+      return file
     }
 
     // addFrontEndFile: async (parent, { projectID, fileName }, context) => {

@@ -14,7 +14,8 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Project from './pages/Project';
-import Folder from './pages/Folders'
+import Folder from './pages/Folders';
+import FrontEnd from './pages/FrontEnd'
 
 import './App.css'
 
@@ -67,6 +68,9 @@ function App() {
             </Route>
             <Route exact path='/folder/:folderID'>
               <Folder />
+            </Route>
+            <Route exact path='/frontfile/:folderID'>
+              <FrontEnd />
             </Route>
           </div>
         </div>
