@@ -1,0 +1,64 @@
+.loginContainer {
+    /* box-shadow: 0px 2px 10px 2px var(--secondaryColour); */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    width: 70vw;
+    height: 80vh;
+    margin: auto;
+}
+
+.secondLoginContainer {
+    background: radial-gradient(rgb(59, 119, 209), rgb(38, 95, 182));
+    box-shadow: 0px 0px 10px 0px var(--titleColour);
+    width: 40%;
+    height: 70%;
+    border-radius: 7px 0px 0px 7px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.signupContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(#DF4C73, #e92257);
+    box-shadow: 0px 0px 10px 0px #DF4C73;
+    width: 40%;
+    height: 70%;
+    border-radius: 0px 7px 7px 0px;
+}
+
+.signupContainer p {
+    font-size: 70%;
+    margin-bottom: 30px;
+}
+
+.signupButton {
+    font-size: 110%;
+    color: var(--textColour);
+    width: 300px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    border-color: var(--textColour);
+    border-style: solid;
+    border-width: 1px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.signupButton:hover {
+    background-color: #d62756;
+    color: var(--textColour);
+    text-decoration: none;
+}

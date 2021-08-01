@@ -8,7 +8,7 @@
     margin: auto;
     align-items: center;
     text-align: center;
-    background: linear-gradient(aliceblue, white);
+    /* background: linear-gradient(aliceblue, white); */
     height: 90%;
     margin-top: 40px;
     margin-bottom: 30px;
@@ -24,7 +24,9 @@
     border-radius: 7px;
     margin: 20px;
     min-width: 200px;
-    background-color: var(--backgroundColour);
+    /* background-color: var(--backgroundColour); */
+    background: radial-gradient(#DF4C73, #e92257);
+
     padding: 10px;
     transition: all 0.3s;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
@@ -36,7 +38,7 @@
 }
 
 .cardHeader {
-    color: aliceblue;
+    color: var(--textColour);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,12 +46,12 @@
 
 
 .createdText {
-    color: var(--titleColour);
+    color: var(--textColour);
     font-size: 40%;
 }
 
 .cardBody {
-    color: aliceblue;
+    color: var(--textColour);
     position: relative;
     top: -7px
 }
@@ -64,7 +66,7 @@
 
 
 .closeButton {
-    color: white;
+    color: var(--textColour);
     position: relative;
     top: -5px;
     background-color: none;

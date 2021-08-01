@@ -5,6 +5,8 @@ import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+import './Login.css'
+
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -41,11 +43,11 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+    <main className="loginContainer">
+      <div className="secondLoginContainer">
+        <div className="">
+          <h4 className="">Login</h4>
+          <div className="">
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -86,6 +88,14 @@ const Login = (props) => {
             )}
           </div>
         </div>
+      </div>
+      <div className="signupContainer">
+        <div>
+          <h4>Sign Up</h4>
+          <p>Begin your journey with us by clicking the button below</p>
+          <Link className='signupButton' to='/signup'>Sign Up</Link>
+        </div>
+
       </div>
     </main>
   );
