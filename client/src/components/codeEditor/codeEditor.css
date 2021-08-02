@@ -1,0 +1,17 @@
+.editorContainer {
+    width: 30%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editorContainer a {
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 7px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px
+}

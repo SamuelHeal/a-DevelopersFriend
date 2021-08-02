@@ -25,6 +25,9 @@ const resolvers = {
     },
     folder: async (parent, { folderID }) => {
       return Folder.findOne({ _id: folderID }).sort({ createdAt: -1 }).populate('folders').populate('frontEndFiles').populate('backEndFiles')
+    },
+    frontEndFile: async (parent, { fileID }) => {
+      return FrontEndFile.findOne({ _id: fileID })
     }
   },
 
@@ -297,23 +300,14 @@ const resolvers = {
   
     },
 
+    updateHTMLInFile: async(parent, { fileID, html }, context) => {
+      await FrontEndFile.findOneAndUpdate(
+        { _id: fileID },
+        { $set: { html: html}},
+        { new: true } 
+        )
+    }
 
-  //   removeBackEnd: async (parent, { projectID, fileID }, context) => {
-  //     if (context.user) {
-  //       return Project.findOneAndUpdate(
-  //         { _id: projectID },
-  //         {
-  //           $pull: {
-  //             backEndFiles: {
-  //               _id: fileID,
-  //             },
-  //           },
-  //         },
-  //         { new: true }
-  //       );
-  //     }
-  //     throw new AuthenticationError('You need to be logged in!');
-  //   }
   },
 };
 
