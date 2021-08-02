@@ -43,7 +43,7 @@ function EditorCSS() {
                 }}
             />
 
-            <a>Save Javascript</a>
+            <a>Save CSS</a>
         </div>
         
         

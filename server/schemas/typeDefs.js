@@ -77,6 +77,9 @@ const typeDefs = gql`
     addBackEndFileToFolder(projectID: ID!, fileName: String!): BackEndFile
     
     updateHTMLInFile(fileID: ID!, html: String!): FrontEndFile
+    updateCSSInFile(fileID: ID!, css: String!): FrontEndFile
+    updateJSInFrontEndFile(fileID: ID!, javascript: String!): FrontEndFile
+    updateJSInBackEndFile(fileID: ID!, javascript: String!): BackEndFile
 
     removeProject(projectID: ID!): Project
     removeFolder(folderID: ID!): Folder

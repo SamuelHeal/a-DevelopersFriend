@@ -28,6 +28,9 @@ const resolvers = {
     },
     frontEndFile: async (parent, { fileID }) => {
       return FrontEndFile.findOne({ _id: fileID })
+    },
+    backEndFile: async (parent, { fileID }) => {
+      return BackEndFile.findOne({ _id: fileID })
     }
   },
 
@@ -306,7 +309,29 @@ const resolvers = {
         { $set: { html: html}},
         { new: true } 
         )
-    }
+    },
+    updateCSSInFile: async(parent, { fileID, css }, context) => {
+      await FrontEndFile.findOneAndUpdate(
+        { _id: fileID },
+        { $set: { css: css}},
+        { new: true } 
+        )
+    },
+    updateJSInFrontEndFile: async(parent, { fileID, javascript }, context) => {
+      await FrontEndFile.findOneAndUpdate(
+        { _id: fileID },
+        { $set: { javascript: javascript}},
+        { new: true } 
+        )
+    },
+    updateJSInBackEndFile: async(parent, { fileID, javascript }, context) => {
+      await BackEndFile.findOneAndUpdate(
+        { _id: fileID },
+        { $set: { javascript: javascript}},
+        { new: true } 
+        )
+    },
+
 
   },
 };
