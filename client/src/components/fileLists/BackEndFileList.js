@@ -41,7 +41,7 @@ function BackEndFileList({ files = [] }) {
             {files && files.map((file) => {
                 return (
                     <div key={file._id} className="folderDiv">  
-                        <Link className='link' to={`/frontfile/${file._id}`}>
+                        <Link className='link' to={`/backfile/${file._id}`}>
                         <div className='folderHeader'>
                         <a className='closeButtonFolder' onClick={() => {
                                     deleteBackFile(file._id);

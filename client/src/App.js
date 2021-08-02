@@ -16,6 +16,7 @@ import Header from './components/Header';
 import Project from './pages/Project';
 import Folder from './pages/Folders';
 import FrontEnd from './pages/FrontEnd'
+import BackEnd from './pages/BackEnd'
 
 import './App.css'
 
@@ -69,8 +70,11 @@ function App() {
             <Route exact path='/folder/:folderID'>
               <Folder />
             </Route>
-            <Route exact path='/frontfile/:folderID'>
+            <Route exact path='/frontfile/:fileID'>
               <FrontEnd />
+            </Route>
+            <Route exact path='/backfile/:fileID'>
+              <BackEnd />
             </Route>
           </div>
         </div>

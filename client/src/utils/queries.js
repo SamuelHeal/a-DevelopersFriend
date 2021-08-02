@@ -91,3 +91,27 @@ export const QUERY_SINGLE_FOLDER = gql`
     }
   }
 `
+
+export const QUERY_FRONT_END_FILE = gql`
+  query getFrontEndFile($fileID: ID!) {
+    frontEndFile(fileID: $fileID) {
+      fileName
+      projectID
+      createdAt
+      html
+      css
+      javascript
+    }
+  }
+`
+
+export const QUERY_BACK_END_FILE = gql`
+  query getBackEndFile($fileID: ID!) {
+    backEndFile(fileID: $fileID) {
+      fileName
+      projectID
+      createdAt
+      javascript
+    }
+  }
+`

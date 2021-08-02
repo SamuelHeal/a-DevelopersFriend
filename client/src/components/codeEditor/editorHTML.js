@@ -2,16 +2,39 @@ import {useState} from 'react'
 import AceEditor from 'react-ace'
 import './codeEditor.css'
 // import mode-<language> , this imports the style and colors for the selected language.
-import 'ace-builds/src-noconflict/mode-javascript'
+import 'ace-builds/src-noconflict/mode-html'
 // there are many themes to import, I liked monokai.
-import 'ace-builds/src-noconflict/theme-monokai'
+import 'ace-builds/src-noconflict/theme-twilight'
 // this is an optional import just improved the interaction.
 import 'ace-builds/src-noconflict/ext-language_tools'
 import 'ace-builds/src-noconflict/ext-beautify'
 
-function EditorHTML() {
-    const [code, setCode] = useState('')
+import { useMutation } from '@apollo/client';
+import { UPDATE_HTML } from '../../utils/mutations';
 
+function EditorHTML({
+    html,
+    fileID
+}) {
+    const [code, setCode] = useState(html)
+
+    const [updateHTML, { error }] = useMutation(UPDATE_HTML)
+
+    const handleUpdate = async (e) => {
+        e.preventDefault()
+        try {
+            const { data } = await updateHTML({
+                variables: {
+                  fileID: fileID,
+                  html: code,
+                },
+              });
+            } catch (err) {
+              console.error(err);
+            }
+        
+    }
+    
 
     return (
         <div className='editorContainer'>
@@ -26,7 +49,7 @@ function EditorHTML() {
                 }}
                 placeholder='HTML'
                 mode='html'
-                theme='monokai'
+                theme='twilight'
                 name='html'
                 onChange={currentCode => setCode(currentCode)}
                 fontSize={15}
@@ -43,7 +66,7 @@ function EditorHTML() {
                 }}
             />
 
-            <a>Save HTML</a>
+            <a onClick={handleUpdate}>Save HTML</a>
         </div>
         
         

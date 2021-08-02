@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, useParams, useHistory } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
+import React from 'react';
+import { Redirect, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 
 import ProjectList from '../components/projectList/index'
 import AddNewProject from '../components/addProject/index'
 
-import { ADD_PROJECT } from '../utils/mutations';
-
-// import './addProject.css'
-
-// import Auth from '../../utils/auth';
 
 import './Profile.css'
 
@@ -25,10 +20,6 @@ const Profile = () => {
   
   const user = data?.me || {};  
 
-  const [projectName, setProjectName] = useState('')
-  const [characterCount, setCharacterCount] = useState(0)
-
-  
       if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
         return <Redirect to="/me" />;
       }

@@ -194,3 +194,35 @@ export const REMOVE_BACK_END_FILE_FROM_FOLDER = gql`
     }
   }
 `
+
+export const UPDATE_HTML = gql`
+  mutation updateHTMLInFile($fileID: ID!, $html: String!) {
+    updateHTMLInFile(fileID: $fileID, html: $html) {
+      html
+    }
+  }
+`
+
+export const UPDATE_CSS = gql`
+  mutation updateCSSInFile($fileID: ID!, $css: String!) {
+    updateCSSInFile(fileID: $fileID, css: $css) {
+      css
+    }
+  }
+`
+
+export const UPDATE_JAVASCRIPT_IN_FRONTFILE = gql`
+  mutation updateJSInFrontEndFile($fileID: ID!, $javascript: String!) {
+    updateJSInFrontEndFile(fileID: $fileID, javascript: $javascript) {
+      javascript
+    }
+  }
+`
+
+export const UPDATE_JAVASCRIPT_IN_BACKFILE = gql`
+  mutation updateJSInBackEndFile($fileID: ID!, $javascript: String!) {
+    updateJSInBackEndFile(fileID: $fileID, javascript: $javascript) {
+      javascript
+    }
+  }
+`

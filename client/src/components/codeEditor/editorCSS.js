@@ -4,14 +4,37 @@ import './codeEditor.css'
 // import mode-<language> , this imports the style and colors for the selected language.
 import 'ace-builds/src-noconflict/mode-javascript'
 // there are many themes to import, I liked monokai.
-import 'ace-builds/src-noconflict/theme-monokai'
+import 'ace-builds/src-noconflict/theme-twilight'
 // this is an optional import just improved the interaction.
 import 'ace-builds/src-noconflict/ext-language_tools'
 import 'ace-builds/src-noconflict/ext-beautify'
 
-function EditorCSS() {
-    const [code, setCode] = useState('')
+import { useMutation } from '@apollo/client';
+import { UPDATE_CSS } from '../../utils/mutations';
 
+function EditorCSS({
+    css,
+    fileID
+}) {
+    const [code, setCode] = useState(css)
+    
+
+    const [updateCSS, { error }] = useMutation(UPDATE_CSS)
+
+    const handleUpdate = async (e) => {
+        e.preventDefault()
+        try {
+            const { data } = await updateCSS({
+                variables: {
+                  fileID: fileID,
+                  css: code,
+                },
+              });
+            } catch (err) {
+              console.error(err);
+            }
+        
+    }
 
     return (
         <div className='editorContainer'>
@@ -26,7 +49,7 @@ function EditorCSS() {
                 }}
                 placeholder='CSS'
                 mode='css'
-                theme='monokai'
+                theme='twilight'
                 name='css'
                 onChange={currentCode => setCode(currentCode)}
                 fontSize={15}
@@ -43,7 +66,7 @@ function EditorCSS() {
                 }}
             />
 
-            <a>Save CSS</a>
+            <a onClick={handleUpdate}>Save CSS</a>
         </div>
         
         

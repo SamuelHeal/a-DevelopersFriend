@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 
 
-import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
 import { ADD_FRONT_END_FILE_TO_FOLDER } from '../../utils/mutations';
 
 const customStyles = {

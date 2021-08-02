@@ -10,15 +10,15 @@ import 'ace-builds/src-noconflict/ext-language_tools'
 import 'ace-builds/src-noconflict/ext-beautify'
 
 import { useMutation } from '@apollo/client';
-import { UPDATE_JAVASCRIPT_IN_FRONTFILE } from '../../utils/mutations';
+import { UPDATE_JAVASCRIPT_IN_BACKFILE } from '../../utils/mutations';
 
-function EditorJS({
+function EditorBackJS({
     javascript,
     fileID
 }) {
     const [code, setCode] = useState(javascript)
 
-    const [updateJS, { error }] = useMutation(UPDATE_JAVASCRIPT_IN_FRONTFILE)
+    const [updateJS, { error }] = useMutation(UPDATE_JAVASCRIPT_IN_BACKFILE)
 
     const handleUpdate = async (e) => {
         e.preventDefault()
@@ -37,11 +37,11 @@ function EditorJS({
 
 
     return (
-        <div className='editorContainer'>
+        <div className='editorBackContainer'>
             <AceEditor
                 style={{
-                    height: '300px',
-                    width: '100%',
+                    height: '60vh',
+                    width: '60%',
                     minWidth: '200px',
                     borderRadius: '7px',
                     padding: '10px',
@@ -73,4 +73,4 @@ function EditorJS({
     )
 }
 
-export default EditorJS
+export default EditorBackJS

@@ -1,12 +1,11 @@
-import React, { useState} from 'react'
+import React from 'react'
 import './Folder.css'
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { useMutation } from '@apollo/client';
 
 
-import { QUERY_SINGLE_FOLDER} from '../utils/queries';
+import { QUERY_SINGLE_FOLDER } from '../utils/queries';
 
 import FolderList from '../components/fileLists/FolderList'
 import FolderInFolderModal from '../components/Modal/FolderInFolderModal';
@@ -25,7 +24,6 @@ function Folders() {
     })
 
     const folders = data?.folder || {};    
-    console.log(folders.frontEndFiles)
 
     if (loading) {
         return <div>Loading...</div>;
