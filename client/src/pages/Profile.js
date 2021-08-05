@@ -20,6 +20,7 @@ const Profile = () => {
   
   const user = data?.me || {};  
 
+
       if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
         return <Redirect to="/me" />;
       }
