@@ -29,7 +29,7 @@ const AddNewProject = () => {
           });
           setProjectName('');
           setCharacterCount(0)
-          // window.location.reload()
+          window.location.reload()
         } catch (err) {
           console.error(err);
         }
@@ -46,7 +46,7 @@ const AddNewProject = () => {
 
       return (
           <div className='formContainer'>
-              <h2>Add a new collection</h2>
+              <h2>Add a new project</h2>
 
               {Auth.loggedIn() ? (
                   <>

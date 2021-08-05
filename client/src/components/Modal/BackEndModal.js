@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
+import './modal.css'
+
 
 
 import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
@@ -81,20 +83,18 @@ function BackEndModal() {
     }
 
   return (
-    <div>
+    <div className='modalContainer'>
       <button onClick={openModal}>Add File</button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Add File"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add a front-end file</h2>
+        <h2>Add a back-end file</h2>
         
-        <div>I am a modal</div>
-        <form className='addFileForm' onSubmit={handleFormSubmit}>
-            <div className='formContainer'>
+        <form onSubmit={handleFormSubmit}>
+            <div>
                 <input 
                 name='fileName' 
                 placeholder='File Name'
@@ -106,18 +106,18 @@ function BackEndModal() {
             <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
             Character Count: {characterCount}/30
             </p>
-            <div>
+            
                 <button className='button' type='submit'>
                     Add Folder
                 </button>
-            </div>
+            
             {error && (
             <div className="errorMessage">
                 {error.message}
             </div>
             )}
         </form>
-        <button onClick={closeModal}>close</button>
+        <a className='modalFrontClose' onClick={closeModal}>x</a>
       </Modal>
     </div>
   );

@@ -5,7 +5,7 @@ import './Header.css'
 
 import Auth from '../../utils/auth';
 
-const Header = () => {
+const LoginHeader = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -31,12 +31,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link className="headerButton" to="/login">
-                Login
-              </Link>
-              <Link className="headerButton" to="/signup">
-                Signup
-              </Link>
+                <Link className="headerButton" to="/">  
+                    Home
+                </Link>
+
             </>
           )}
         </div>
@@ -45,4 +43,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default LoginHeader;

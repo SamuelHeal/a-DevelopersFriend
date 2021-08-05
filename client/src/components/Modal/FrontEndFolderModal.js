@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import './modal.css'
+
 
 import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -73,7 +75,7 @@ function FrontEndFolderModal() {
       };
 
   return (
-    <div>
+    <div className='modalContainer'>
       <button onClick={openModal}>Add File</button>
       <Modal
         isOpen={modalIsOpen}

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 
 import './Project.css'
 
@@ -27,6 +29,7 @@ const SingleProject = () => {
     })
 
     const projects = data?.project || {};
+
     
 
     if (loading) {
@@ -36,14 +39,18 @@ const SingleProject = () => {
 
     return (
         <div className='projectContainer'> 
+            <Link to='/me'>
+                <button>Back</button>
+            </Link>
+            <h3 className='projectName'>{projects.projectName}</h3>
             <div className='fileContainer'>
                 <h3>Folders</h3>
                 <div className='files'>
-                    <div>
-                        <FolderModal />
-                    </div>
+                    <FolderModal />
+                    <div className='fileBorder'>
+                        <FolderList folders={projects.folders}/>
 
-                    <FolderList folders={projects.folders}/>
+                    </div>
 
                     
 
@@ -53,10 +60,11 @@ const SingleProject = () => {
             <div className='fileContainer'>
                 <h3>Front End Files</h3>
                 <div className='files'>
-                    <div>
-                        <FrontEndModal />
+                    <FrontEndModal />
+                    <div className='fileBorder'>
+                        <FrontEndFileList files={projects.frontEndFiles}/>
+
                     </div>
-                    <FrontEndFileList files={projects.frontEndFiles} />
                     
                 </div>
                 
@@ -64,10 +72,10 @@ const SingleProject = () => {
             <div className='fileContainer'>
                 <h3>Back End Files</h3>
                 <div className='files'>
-                    <div>
-                        <BackEndModal />
-                    </div>
+                    <BackEndModal />
+                    <div className='fileBorder'>
                     <BackEndFileList files={projects.backEndFiles} />
+                    </div>
                     
                 </div>
                 

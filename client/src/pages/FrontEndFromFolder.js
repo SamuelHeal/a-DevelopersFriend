@@ -12,7 +12,7 @@ import { QUERY_PROJECTS } from '../utils/queries';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-function FrontEnd() {
+function FrontEndFromFolder() {
 
     const { fileID } = useParams()
 
@@ -38,7 +38,7 @@ function FrontEnd() {
 
     return (
         <div className="frontEndContainer">
-            <Link to={`/projects/${data.frontEndFile.projectID}`}>
+            <Link to={`/folder/${data.frontEndFile.projectID}`}>
                 <button>Back</button>
             </Link>
             <h3 className='projectName'>{data.frontEndFile.fileName}</h3>
@@ -53,4 +53,4 @@ function FrontEnd() {
     )
 }
 
-export default FrontEnd
+export default FrontEndFromFolder

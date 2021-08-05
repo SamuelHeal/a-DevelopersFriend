@@ -10,7 +10,7 @@ import { QUERY_BACK_END_FILE } from '../utils/queries'
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-function BackEnd() {
+function BackEndFromFolder() {
 
     const { fileID } = useParams()
 
@@ -26,7 +26,7 @@ function BackEnd() {
 
     return (
         <div className="backEndContainer">
-            <Link to={`/projects/${data.backEndFile.projectID}`}>
+            <Link to={`/folder/${data.backEndFile.projectID}`}>
                 <button>Back</button>
             </Link>
             <h3 className='projectName'>{data.backEndFile.fileName}</h3>
@@ -37,4 +37,4 @@ function BackEnd() {
     )
 }
 
-export default BackEnd
+export default BackEndFromFolder

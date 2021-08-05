@@ -42,15 +42,13 @@ const Profile = () => {
   return (
     <div>
       <h2 className="headingContainer">
-          {userParam ? `${user.username}'s` : 'Your'} Collections
+          {userParam ? `${user.username}'s` : 'Your'} Projects
       </h2>
       <div className='profileContainer'>
         {!userParam && (
-          <div
-            className="projectForm"
-          >
+
             <AddNewProject />
-          </div>
+  
         )}
         
         <div className='mainListContainer'>

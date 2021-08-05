@@ -17,6 +17,9 @@ import Project from './pages/Project';
 import Folder from './pages/Folders';
 import FrontEnd from './pages/FrontEnd'
 import BackEnd from './pages/BackEnd'
+import LoginHeader from './components/Header/loginHeader';
+import FrontEndFromFolder from './pages/FrontEndFromFolder';
+import BackEndFromFolder from './pages/BackEndFromFolder';
 
 import './App.css'
 
@@ -50,9 +53,11 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/login">
+              <LoginHeader />
               <Login />
             </Route>
             <Route exact path="/signup">
+              <LoginHeader />
               <Signup />
             </Route>
             <Route exact path="/me">
@@ -71,9 +76,17 @@ function App() {
               <Header />
               <FrontEnd />
             </Route>
+            <Route exact path='/folderfrontfile/:fileID'>
+              <Header />
+              <FrontEndFromFolder />
+            </Route>
             <Route exact path='/backfile/:fileID'>
               <Header />
               <BackEnd />
+            </Route>
+            <Route exact path='/folderbackfile/:fileID'>
+              <Header />
+              <BackEndFromFolder />
             </Route>
           </div>
         </div>

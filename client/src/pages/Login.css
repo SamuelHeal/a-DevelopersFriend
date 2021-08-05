@@ -1,5 +1,4 @@
 .loginContainer {
-    /* box-shadow: 0px 2px 10px 2px var(--secondaryColour); */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -11,10 +10,10 @@
 }
 
 .secondLoginContainer {
-    background: radial-gradient(rgb(59, 119, 209), rgb(38, 95, 182));
-    box-shadow: 0px 0px 10px 0px var(--titleColour);
+    background: radial-gradient(var(--backgroundColour), #f7f7ea);
+    box-shadow: 0px 0px 5px 0px black;
     width: 40%;
-    height: 70%;
+    height: 50%;
     border-radius: 7px 0px 0px 7px;
     padding: 20px;
     display: flex;
@@ -26,14 +25,15 @@
 
 .signupContainer {
     display: flex;
+    color: var(--backgroundColour);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: radial-gradient(#DF4C73, #e92257);
-    box-shadow: 0px 0px 10px 0px #DF4C73;
+    background: radial-gradient(black, rgb(27, 27, 27));
+    box-shadow: 0px 0px 5px 0px black;
     width: 40%;
-    height: 70%;
+    height: 50%;
     border-radius: 0px 7px 7px 0px;
 }
 
@@ -42,23 +42,47 @@
     margin-bottom: 30px;
 }
 
+.loginButton {
+    font-size: 110%;
+    color: black;
+    background-color: var(--backgroundColour);
+    width: 200px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.loginButton:hover {
+    background-color: black;
+    color: var(--backgroundColour);
+    text-decoration: none;
+}
+
 .signupButton {
     font-size: 110%;
-    color: var(--textColour);
+    color: var(--backgroundColour);
     width: 300px;
     padding: 5px;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 10px;
-    border-color: var(--textColour);
+    border-color: var(--backgroundColour);
     border-style: solid;
     border-width: 1px;
     text-decoration: none;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .signupButton:hover {
-    background-color: #d62756;
+    background-color: var(--backgroundColour);
     color: var(--textColour);
     text-decoration: none;
 }

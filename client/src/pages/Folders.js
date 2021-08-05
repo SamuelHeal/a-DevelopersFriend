@@ -1,5 +1,7 @@
 import React from 'react'
 import './Folder.css'
+import { Link } from 'react-router-dom';
+
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -30,16 +32,19 @@ function Folders() {
     }
 
     return (
+        
         <div className='projectContainer'> 
+            <Link to={`/projects/${folders.projectID}`}>
+                <button>Back</button>
+            </Link>
+            <h3 className='projectName'>{folders.folderName}</h3>
             <div className='fileContainer'>
                 <h3>Folders</h3>
                 <div className='files'>
                     <FolderInFolderModal />
-                    <div className='theFolders'>
+                    <div className='fileBorder'>
                         <FolderList folders={folders.folders}/>
                     </div>
-                    
-
                 </div>
 
             </div>
@@ -47,7 +52,7 @@ function Folders() {
                 <h3>Front End Files</h3>
                 <div className='files'>
                     <FrontEndFolderModal />
-                    <div className='theFolders'>
+                    <div className='fileBorder'>
                         <FrontEndInFolderList files={folders.frontEndFiles}/>
                     </div>
                 </div>
@@ -57,7 +62,7 @@ function Folders() {
                 <h3>Back End Files</h3>
                 <div className='files'>
                     <BackEndFolderModal />
-                    <div className='theFolders'>
+                    <div className='fileBorder'>
                         <BackEndInFolderList files={folders.backEndFiles}/>
                     </div>
                     

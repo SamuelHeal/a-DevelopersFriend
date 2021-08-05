@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import './modal.css'
+
 
 import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -75,7 +77,7 @@ function FolderInFolderModal() {
     };
 
   return (
-    <div>
+    <div className='modalContainer'>
       <button onClick={openModal}>Add Folder</button>
       <Modal
         isOpen={modalIsOpen}

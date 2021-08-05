@@ -1,9 +1,10 @@
 .formContainer {
-    color: aliceblue;
+    color: var(--textColour);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 20px
 }
 
 .addProjectForm {
@@ -29,28 +30,34 @@
 .projectInput {
     border-style: solid;
     border-color: var(--titleColour);
-    background-color: #1A1A1D;
+    background-color: #f7f7ea;
     height: 35px;
     width: 100%;
     outline: none;
-    color: rgb(158, 157, 157);
+    color: black;
     border-radius: 7px;
 }
 
 .button {
-    background-color: #1A1A1D;
-    color: rgb(158, 157, 157);
-    border-style: solid;
-    border-radius: 7px;
+    font-size: 110%;
+    color: black;
+    background-color: #f7f7ea;
+    width: 200px;
     padding: 5px;
-    border-color: var(--titleColour);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
 .button:hover {
-    transform: scale(1.05);
-    background-color: var(--titleColour);
-    color: #1A1A1D;
+    background-color: black;
+    color: #f7f7ea;
+    text-decoration: none;
 }
 

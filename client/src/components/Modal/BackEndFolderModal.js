@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import './modal.css'
+
 
 import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -29,10 +31,6 @@ function FrontEndFolderModal() {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
 
   function closeModal() {
     setIsOpen(false);
@@ -74,19 +72,17 @@ function FrontEndFolderModal() {
       };
 
   return (
-    <div>
+    <div className='modalContainer'>
       <button onClick={openModal}>Add File</button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Add File"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add a back-end file</h2>
+        <h2>Add a back-end file</h2>
         
-        <div>I am a modal</div>
-        <form className='addFileForm' onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit}>
             <div className='formContainer'>
                 <input 
                 name='fileName' 
@@ -99,18 +95,16 @@ function FrontEndFolderModal() {
             <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
             Character Count: {characterCount}/30
             </p>
-            <div>
                 <button className='button' type='submit'>
                     Add Folder
                 </button>
-            </div>
             {error && (
             <div className="errorMessage">
                 {error.message}
             </div>
             )}
         </form>
-        <button onClick={closeModal}>close</button>
+        <a className='modalClose' onClick={closeModal}>x</a>
       </Modal>
     </div>
   );

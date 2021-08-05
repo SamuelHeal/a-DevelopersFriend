@@ -31,7 +31,11 @@ const ProjectList = ({
     }
 
     if (!projects.length) {
-        return <h1>No projects yet</h1>
+        return (
+            <div className='noProjects'>
+                <h1>No projects yet</h1>
+            </div>
+        )
     }
     else{
         return (

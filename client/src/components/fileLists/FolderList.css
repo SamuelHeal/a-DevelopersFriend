@@ -5,12 +5,24 @@
     justify-content: center;
     align-items: center;
     border-radius: 7px;
-    min-width: 150px;
-    height: 100px;
-    /* background: radial-gradient(#24afda, #4c5cec); */
+    min-width: 70px;
+    height: 50px;
     margin: 20px;
     padding: 10px;
     color: black;
+    transition: all 0.3s;
+}
+
+.folderDiv:hover {
+    transform: scale(1.1);
+}
+
+.folderDiv:hover h3 {
+    color: rgb(248, 101, 47);
+}
+
+.folderDiv:hover .icon {
+    color: rgb(248, 101, 47);
 }
 
 .folderHeader {
@@ -21,24 +33,29 @@
     align-items: center;
 }
 
-.close {
-    position: relative;
-    top: -7px
-}
+
 
 .closeButtonFolder {
     color: black;
     position: relative;
-    top: -5px;
+    left: 40px;
+    top: 3px;
     background-color: none;
     border: none;
     transition: all 0.3s;
     cursor: pointer;
 }
 
+.closeButtonFolder:hover {
+    transform: scale(1.1);
+    color: red;
+    text-decoration: none;
+}
+
 .icon {
-    font-size: 60px;
-    margin: auto
+    font-size: 50px;
+    margin: auto;
+    color: rgb(245, 145, 109);
 }
 
 .folderDiv p {
@@ -48,4 +65,5 @@
 
 .folderDiv h3 {
     font-size: 70%;
+    color: black;
 }

@@ -2,9 +2,10 @@
 
 .profileContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 40px;
 }
 
 .headingContainer {
@@ -17,8 +18,9 @@
 
 .mainListContainer {
     width: 100%;
-    /* background: linear-gradient(aliceblue, white); */
-    height: 70vh;
+    background: linear-gradient(black, rgb(58, 58, 58));
+    height: 58vh;
+    margin: 20px;
     margin-top: 30px;
     margin-bottom: 60px;
     border-radius: 7px;

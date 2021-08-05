@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import './modal.css'
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -17,10 +18,10 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    
   },
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
 function FolderModal() {
@@ -32,7 +33,6 @@ function FolderModal() {
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
     subtitle.style.color = '#f00';
   }
 
@@ -86,20 +86,18 @@ function FolderModal() {
     }
 
   return (
-    <div>
+    <div className='modalContainer'>
       <button onClick={openModal}>Add Folder</button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Add Folder"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add a folder</h2>
+        <h2>Add a folder</h2>
         
-        <div>I am a modal</div>
-        <form className='addFolderForm' onSubmit={handleFormSubmit}>
-            <div className='formContainer'>
+            <form onSubmit={handleFormSubmit}>
+            <div>
                 <input 
                 name='folderName' 
                 placeholder='Folder Name'
@@ -111,18 +109,18 @@ function FolderModal() {
             <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
             Character Count: {characterCount}/30
             </p>
-            <div>
-                <button className='button' type='submit'>
-                    Add Folder
-                </button>
-            </div>
+            
+            <button type='submit'>
+                Add Folder
+            </button>
+            
             {error && (
             <div className="errorMessage">
                 {error.message}
             </div>
             )}
         </form>
-        <button onClick={closeModal}>close</button>
+        <a className='modalClose' onClick={closeModal}>x</a>
       </Modal>
     </div>
   );

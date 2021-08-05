@@ -1,5 +1,14 @@
 
 
+.noProjects {
+    color: #f7f7ea;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .listContainer {
     display: flex;
     flex-direction: column;
@@ -8,25 +17,22 @@
     margin: auto;
     align-items: center;
     text-align: center;
-    /* background: linear-gradient(aliceblue, white); */
     height: 90%;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     margin-bottom: 30px;
     border-radius: 7px;
     overflow-y: auto;
     overflow-x: hidden;
     white-space: nowrap;
-
 }
 
 .collectionCard {
-    width: 50%;
+    width: 80%;
     border-radius: 7px;
     margin: 20px;
     min-width: 200px;
     /* background-color: var(--backgroundColour); */
-    background: radial-gradient(#DF4C73, #e92257);
-
+    background: radial-gradient(var(--backgroundColour), #f7f7ea);
     padding: 10px;
     transition: all 0.3s;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
