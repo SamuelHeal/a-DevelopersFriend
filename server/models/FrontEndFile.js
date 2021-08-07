@@ -9,6 +9,11 @@ const frontEndSchema = new Schema({
     maxlength: 30,
     trim: true,
   },
+  fileAuthor: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   projectID: {
     type: String,
     required: true,

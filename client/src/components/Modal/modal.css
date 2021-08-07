@@ -64,7 +64,7 @@ form button {
     height: 40px;
     position: relative;
     top: -170px;
-    left: 300px;
+    left: 310px;
     color: black;
     transition: all 0.3s;
     cursor: pointer;
@@ -74,3 +74,9 @@ form button {
     color: red;
     text-decoration: none;
 }
+
+.buttonModal {
+    background-color: white;
+    margin: auto;
+}
+

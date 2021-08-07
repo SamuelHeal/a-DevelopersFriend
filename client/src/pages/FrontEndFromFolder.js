@@ -3,7 +3,9 @@ import './FrontEnd.css'
 import EditorJS from '../components/codeEditor/editorJS'
 import EditorHTML from '../components/codeEditor/editorHTML';
 import EditorCSS from '../components/codeEditor/editorCSS';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
+import Auth from '../utils/auth';
 
 
 import { QUERY_FRONT_END_FILE } from '../utils/queries'
@@ -14,15 +16,16 @@ import { useQuery } from '@apollo/client';
 
 function FrontEndFromFolder() {
 
+    const username = Auth.getProfile().data.username;
+
+
     const { fileID } = useParams()
 
-    const { finding, projects } = useQuery(QUERY_PROJECTS)
 
     const { loading, data } = useQuery(QUERY_FRONT_END_FILE, {
         variables: { fileID }
     })
 
-    console.log(projects)
 
     if (loading) {
         return (
@@ -30,11 +33,10 @@ function FrontEndFromFolder() {
         )
     }
 
-    if (finding) {
-        return (
-            <h1>loading...</h1>
-        )
+    if (username !== data.frontEndFile.fileAuthor){
+        return <Redirect to="/me" />;
     }
+
 
     return (
         <div className="frontEndContainer">

@@ -10,6 +10,9 @@ import { useMutation } from '@apollo/client';
 import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
 import { ADD_FOLDER_TO_FOLDER } from '../../utils/mutations';
 
+import Auth from '../../utils/auth';
+
+
 const customStyles = {
   content: {
     top: '50%',
@@ -21,21 +24,15 @@ const customStyles = {
   },
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
 function FolderInFolderModal() {
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
 
   function closeModal() {
     setIsOpen(false);
@@ -56,6 +53,7 @@ function FolderInFolderModal() {
           const { data } = await addFolder({
             variables: {
               folderName,
+              folderAuthor: Auth.getProfile().data.username,
               projectID: folderID,
             },
           });
@@ -81,16 +79,14 @@ function FolderInFolderModal() {
       <button onClick={openModal}>Add Folder</button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Add Folder"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add a folder</h2>
+        <h2>Add a folder</h2>
         
-        <div>I am a modal</div>
-        <form className='addFolderForm' onSubmit={handleFormSubmit}>
-                        <div className='formContainer'>
+        <form onSubmit={handleFormSubmit}>
+                        <div>
                             <input 
                             name='folderName' 
                             placeholder='Folder Name'
@@ -102,18 +98,16 @@ function FolderInFolderModal() {
                         <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
                         Character Count: {characterCount}/30
                         </p>
-                        <div>
-                            <button className='button' type='submit'>
+                            <button className='buttonModal' type='submit'>
                                 Add Folder
                             </button>
-                        </div>
                         {error && (
                         <div className="errorMessage">
                             {error.message}
                         </div>
                         )}
                     </form>
-        <button onClick={closeModal}>close</button>
+                  <a className='modalClose' onClick={closeModal}>x</a>
       </Modal>
     </div>
   );

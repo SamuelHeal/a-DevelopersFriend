@@ -57,10 +57,12 @@ export const QUERY_SINGLE_PROJECT = gql`
       frontEndFiles {
         _id
         fileName
+        fileAuthor
       }
       backEndFiles {
         _id
         fileName
+        fileAuthor
       }
     }
   }
@@ -71,21 +73,25 @@ export const QUERY_SINGLE_FOLDER = gql`
     folder(folderID: $folderID) {
       _id
       folderName
+      folderAuthor
       projectID
       createdAt
       folders {
         _id
         folderName
+        folderAuthor
         createdAt
       }
       frontEndFiles {
         _id
         fileName
+        fileAuthor
         createdAt
       }
       backEndFiles {
         _id
         fileName
+        fileAuthor
         createdAt
       }
     }
@@ -96,6 +102,7 @@ export const QUERY_FRONT_END_FILE = gql`
   query getFrontEndFile($fileID: ID!) {
     frontEndFile(fileID: $fileID) {
       fileName
+      fileAuthor
       projectID
       createdAt
       html
@@ -109,6 +116,7 @@ export const QUERY_BACK_END_FILE = gql`
   query getBackEndFile($fileID: ID!) {
     backEndFile(fileID: $fileID) {
       fileName
+      fileAuthor
       projectID
       createdAt
       javascript

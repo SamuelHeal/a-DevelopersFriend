@@ -27,6 +27,7 @@ const typeDefs = gql`
   type Folder {
     _id: ID
     folderName: String
+    folderAuthor: String
     projectID: String
     createdAt: String
     folders: [Folder]!
@@ -37,6 +38,7 @@ const typeDefs = gql`
   type FrontEndFile {
     _id: ID
     fileName: String
+    fileAuthor: String
     projectID: String
     createdAt: String
     html: String
@@ -47,6 +49,7 @@ const typeDefs = gql`
   type BackEndFile {
     _id: ID
     fileName: String
+    fileAuthor: String
     projectID: String
     createdAt: String
     javascript: String
@@ -66,15 +69,13 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-
-    
     addProject(projectName: String!, projectAuthor: String!): Project
-    addFolderToProject(folderName: String!, projectID: ID!): Folder
-    addFolderToFolder(folderName: String!, projectID: ID!): Folder
-    addFrontEndFileToProject(projectID: ID!, fileName: String!): FrontEndFile
-    addFrontEndFileToFolder(projectID: ID!, fileName: String!): FrontEndFile
-    addBackEndFileToProject(projectID: ID!, fileName: String!): BackEndFile
-    addBackEndFileToFolder(projectID: ID!, fileName: String!): BackEndFile
+    addFolderToProject(folderName: String!, folderAuthor: String!, projectID: ID!): Folder
+    addFolderToFolder(folderName: String!, folderAuthor: String!, projectID: ID!): Folder
+    addFrontEndFileToProject(projectID: ID!, fileAuthor: String!, fileName: String!): FrontEndFile
+    addFrontEndFileToFolder(projectID: ID!, fileAuthor: String!, fileName: String!): FrontEndFile
+    addBackEndFileToProject(projectID: ID!, fileAuthor: String!, fileName: String!): BackEndFile
+    addBackEndFileToFolder(projectID: ID!, fileAuthor: String!, fileName: String!): BackEndFile
     
     updateHTMLInFile(fileID: ID!, html: String!): FrontEndFile
     updateCSSInFile(fileID: ID!, css: String!): FrontEndFile

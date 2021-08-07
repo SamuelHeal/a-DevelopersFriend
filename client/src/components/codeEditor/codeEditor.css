@@ -43,10 +43,10 @@
 }
 
 .editorBackContainer a {
-    font-size: 110%;
+    font-size: 90%;
     color: black;
     background-color: var(--backgroundColour);
-    width: 100px;
+    width: 170px;
     padding: 5px;
     padding-left: 20px;
     padding-right: 20px;
@@ -58,5 +58,11 @@
     cursor: pointer;
     transition: all 0.3s;
     margin-bottom: 20px;
+    text-align: center;
+}
 
+.editorBackContainer a:hover {
+    transform: scale(1.1);
+    background-color: black;
+    color: #f7f7ea;
 }

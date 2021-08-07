@@ -84,3 +84,8 @@
     color: rgb(248, 101, 47);
     font-size: 250%;
 }
+
+.projectBackLink {
+    width: 50px;
+    height: 35px;
+}

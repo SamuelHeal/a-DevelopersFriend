@@ -5,7 +5,6 @@ import './projectList.css'
 import { useMutation } from '@apollo/client';
 
 
-
 import { REMOVE_PROJECT } from '../../utils/mutations';
 
 const ProjectList = ({ 

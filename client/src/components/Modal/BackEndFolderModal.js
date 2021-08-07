@@ -10,6 +10,9 @@ import { useMutation } from '@apollo/client';
 import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
 import { ADD_BACK_END_FILE_TO_FOLDER } from '../../utils/mutations';
 
+import Auth from '../../utils/auth';
+
+
 const customStyles = {
   content: {
     top: '50%',
@@ -24,7 +27,6 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FrontEndFolderModal() {
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -50,6 +52,7 @@ function FrontEndFolderModal() {
           const { data } = await addBackEndFileToFolder({
             variables: {
                 fileName,
+                fileAuthor: Auth.getProfile().data.username,
                 projectID: folderID,
                 
             },
@@ -83,7 +86,7 @@ function FrontEndFolderModal() {
         <h2>Add a back-end file</h2>
         
         <form onSubmit={handleFormSubmit}>
-            <div className='formContainer'>
+            <div>
                 <input 
                 name='fileName' 
                 placeholder='File Name'
@@ -95,7 +98,7 @@ function FrontEndFolderModal() {
             <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
             Character Count: {characterCount}/30
             </p>
-                <button className='button' type='submit'>
+                <button className='buttonModal' type='submit'>
                     Add Folder
                 </button>
             {error && (
@@ -104,7 +107,7 @@ function FrontEndFolderModal() {
             </div>
             )}
         </form>
-        <a className='modalClose' onClick={closeModal}>x</a>
+        <a className='modalFrontClose' onClick={closeModal}>x</a>
       </Modal>
     </div>
   );

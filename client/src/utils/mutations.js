@@ -46,10 +46,11 @@ export const REMOVE_PROJECT = gql`
   }
 `
 export const ADD_FOLDER_TO_PROJECT = gql`
-  mutation addFolderToProject($folderName: String!, $projectID: ID!) {
-    addFolderToProject(folderName: $folderName, projectID: $projectID) {
+  mutation addFolderToProject($folderName: String!, $folderAuthor: String!, $projectID: ID!) {
+    addFolderToProject(folderName: $folderName, folderAuthor: $folderAuthor, projectID: $projectID) {
       _id
       folderName
+      folderAuthor
       projectID
       createdAt
     }
@@ -68,10 +69,11 @@ export const REMOVE_FOLDER = gql`
 `
 
 export const ADD_FOLDER_TO_FOLDER =gql`
-  mutation addFolderToFolder($folderName: String!, $projectID: ID!) {
-    addFolderToFolder(folderName: $folderName, projectID: $projectID) {
+  mutation addFolderToFolder($folderName: String!, $folderAuthor: String!, $projectID: ID!) {
+    addFolderToFolder(folderName: $folderName, folderAuthor: $folderAuthor, projectID: $projectID) {
       _id
       folderName
+      folderAuthor
       projectID
       createdAt
     }
@@ -79,10 +81,11 @@ export const ADD_FOLDER_TO_FOLDER =gql`
 `
 
 export const ADD_FRONT_END_FILE_TO_PROJECT = gql`
-  mutation addFrontEndFileToProject($projectID: ID!, $fileName: String!) {
-    addFrontEndFileToProject(projectID: $projectID, fileName: $fileName) {
+  mutation addFrontEndFileToProject($projectID: ID!, $fileAuthor: String!, $fileName: String!) {
+    addFrontEndFileToProject(projectID: $projectID, fileAuthor: $fileAuthor, fileName: $fileName) {
       _id
       fileName
+      fileAuthor
       projectID
       createdAt
       html
@@ -93,10 +96,11 @@ export const ADD_FRONT_END_FILE_TO_PROJECT = gql`
 `
 
 export const ADD_FRONT_END_FILE_TO_FOLDER = gql`
-  mutation addFrontEndFileToFolder($projectID: ID!, $fileName: String!) {
-    addFrontEndFileToFolder(projectID: $projectID, fileName: $fileName) {
+  mutation addFrontEndFileToFolder($projectID: ID!, $fileAuthor: String!, $fileName: String!) {
+    addFrontEndFileToFolder(projectID: $projectID, fileAuthor: $fileAuthor, fileName: $fileName) {
       _id
       fileName
+      fileAuthor
       projectID
       createdAt
       html
@@ -107,10 +111,11 @@ export const ADD_FRONT_END_FILE_TO_FOLDER = gql`
 `
 
 export const ADD_BACK_END_FILE_TO_PROJECT = gql`
-  mutation addBackEndFileToProject($projectID: ID!, $fileName: String!) {
-    addBackEndFileToProject(projectID: $projectID, fileName: $fileName) {
+  mutation addBackEndFileToProject($projectID: ID!, $fileAuthor: String!, $fileName: String!) {
+    addBackEndFileToProject(projectID: $projectID, fileAuthor: $fileAuthor, fileName: $fileName) {
       _id
       fileName
+      fileAuthor
       projectID
       createdAt
       javascript
@@ -119,10 +124,11 @@ export const ADD_BACK_END_FILE_TO_PROJECT = gql`
 `
 
 export const ADD_BACK_END_FILE_TO_FOLDER = gql`
-  mutation addBackEndFileToFolder($projectID: ID!, $fileName: String!) {
-    addBackEndFileToFolder(projectID: $projectID, fileName: $fileName) {
+  mutation addBackEndFileToFolder($projectID: ID!, $fileAuthor: String!, $fileName: String!) {
+    addBackEndFileToFolder(projectID: $projectID, fileAuthor: $fileAuthor, fileName: $fileName) {
       _id
       fileName
+      fileAuthor
       projectID
       createdAt
       javascript

@@ -4,4 +4,40 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    text-align: center;
+}
+
+.frontEndContainer {
+    margin: 20px;
+}
+
+.projectName {
+    display: flex;
+    justify-content: center;
+}
+
+.frontEndContainer button {
+    margin-left: 20px;
+    font-size: 90%;
+    color: black;
+    background-color: var(--backgroundColour);
+    width: 100px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.frontEndContainer button:hover {
+    transform: scale(1.1);
+    background-color: black;
+    color: #f7f7ea;
 }

@@ -9,6 +9,11 @@ const folderSchema = new Schema({
     maxlength: 30,
     trim: true,
   },
+  folderAuthor: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   projectID: {
     type: String,
     required: true,

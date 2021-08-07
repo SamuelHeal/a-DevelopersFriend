@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 import './Project.css'
@@ -18,8 +18,13 @@ import FrontEndModal from '../components/Modal/FrontEndModal'
 import BackEndFileList from '../components/fileLists/BackEndFileList'
 import BackEndModal from '../components/Modal/BackEndModal'
 
+import Auth from '../utils/auth';
+
+
 
 const SingleProject = () => {
+
+    const username = Auth.getProfile().data.username
 
     const { projectID } = useParams()
 
@@ -36,10 +41,14 @@ const SingleProject = () => {
         return <div>Loading...</div>;
     }
 
+    if (username !== projects.projectAuthor){
+        return <Redirect to="/me" />;
+    }
+
 
     return (
         <div className='projectContainer'> 
-            <Link to='/me'>
+            <Link className='projectBackLink'to='/me'>
                 <button>Back</button>
             </Link>
             <h3 className='projectName'>{projects.projectName}</h3>

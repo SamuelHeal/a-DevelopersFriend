@@ -15,8 +15,6 @@ const AddNewProject = () => {
     const [addProject, { error }] = useMutation(ADD_PROJECT)
    
 
-  
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
     

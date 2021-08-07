@@ -94,12 +94,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addFolderToProject: async (parent, { folderName, projectID }, context) => {
+    addFolderToProject: async (parent, { folderName, folderAuthor, projectID }, context) => {
       
       if (context.user) {
         const folder = await Folder.create({
           folderName,
-          projectID: projectID
+          folderAuthor,
+          projectID,
         });
 
         await Project.findOneAndUpdate(
@@ -127,10 +128,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addFolderToFolder: async (parent, { folderName, projectID }, context) => {
+    addFolderToFolder: async (parent, { folderName, folderAuthor, projectID }, context) => {
       if (context.user) {
         const folder = await Folder.create({
           folderName,
+          folderAuthor,
           projectID,
         })
 
@@ -161,10 +163,11 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    addFrontEndFileToProject: async(parent, { projectID, fileName }, context) => {
+    addFrontEndFileToProject: async(parent, { projectID, fileAuthor, fileName }, context) => {
     if (context.user) {
       const file = await FrontEndFile.create({
         fileName,
+        fileAuthor,
         projectID,
       })
 
@@ -178,11 +181,12 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
 
     },
-    addFrontEndFileToFolder: async(parent, { projectID, fileName }, context) => {
+    addFrontEndFileToFolder: async(parent, { projectID, fileAuthor, fileName }, context) => {
       if (context.user) {
         const file = await FrontEndFile.create({
           fileName,
-          projectID: projectID
+          fileAuthor,
+          projectID,
         })
   
         await Folder.findOneAndUpdate(
@@ -232,10 +236,11 @@ const resolvers = {
   },
 
     
-  addBackEndFileToProject: async(parent, { projectID, fileName }, context) => {
+  addBackEndFileToProject: async(parent, { projectID, fileAuthor, fileName }, context) => {
     if (context.user) {
       const file = await BackEndFile.create({
         fileName,
+        fileAuthor,
         projectID,
       })
 
@@ -250,10 +255,11 @@ const resolvers = {
 
     },
 
-    addBackEndFileToFolder: async(parent, { projectID, fileName }, context) => {
+    addBackEndFileToFolder: async(parent, { projectID, fileAuthor, fileName }, context) => {
       if (context.user) {
         const file = await BackEndFile.create({
           fileName,
+          fileAuthor,
           projectID,
         })
   

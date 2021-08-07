@@ -10,6 +10,9 @@ import { useMutation } from '@apollo/client';
 import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
 import { ADD_FOLDER_TO_PROJECT } from '../../utils/mutations';
 
+import Auth from '../../utils/auth';
+
+
 const customStyles = {
   content: {
     top: '50%',
@@ -25,22 +28,17 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FolderModal() {
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    subtitle.style.color = '#f00';
-  }
-
   function closeModal() {
     setIsOpen(false);
   }
 
-  const [folderName, setFolderName] = useState('')
+    const [folderName, setFolderName] = useState('')
     const [characterCount, setCharacterCount] = useState(0)
 
     const { projectID } = useParams()
@@ -54,6 +52,7 @@ function FolderModal() {
           const { data } = await addFolder({
             variables: {
               folderName,
+              folderAuthor: Auth.getProfile().data.username,
               projectID: projectID,
             },
           });
@@ -76,10 +75,7 @@ function FolderModal() {
 
     const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectID: projectID }
-    })
-
-    const projects = data?.project || {};
-    
+    })    
 
     if (loading) {
         return <div>Loading...</div>;

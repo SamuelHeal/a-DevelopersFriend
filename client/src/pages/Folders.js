@@ -1,6 +1,6 @@
 import React from 'react'
 import './Folder.css'
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 import { useParams } from 'react-router-dom';
@@ -8,6 +8,9 @@ import { useQuery } from '@apollo/client';
 
 
 import { QUERY_SINGLE_FOLDER } from '../utils/queries';
+
+import Auth from '../utils/auth';
+
 
 import FolderList from '../components/fileLists/FolderList'
 import FolderInFolderModal from '../components/Modal/FolderInFolderModal';
@@ -18,6 +21,8 @@ import BackEndFolderModal from '../components/Modal/BackEndFolderModal';
 
 
 function Folders() {
+
+    const username = Auth.getProfile().data.username;
 
     const { folderID } = useParams()
 
@@ -31,10 +36,14 @@ function Folders() {
         return <div>Loading...</div>;
     }
 
+    if (username !== folders.folderAuthor){
+        return <Redirect to="/me" />;
+    }
+
     return (
         
         <div className='projectContainer'> 
-            <Link to={`/projects/${folders.projectID}`}>
+            <Link className='folderBackLink'to={`/projects/${folders.projectID}`}>
                 <button>Back</button>
             </Link>
             <h3 className='projectName'>{folders.folderName}</h3>

@@ -11,6 +11,9 @@ import { useMutation } from '@apollo/client';
 import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
 import { ADD_FRONT_END_FILE_TO_PROJECT} from '../../utils/mutations';
 
+import Auth from '../../utils/auth';
+
+
 const customStyles = {
   content: {
     top: '50%',
@@ -25,7 +28,6 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FrontEndModal() {
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -50,7 +52,8 @@ function FrontEndModal() {
           const { data } = await addFrontEndFile({
             variables: {
               fileName,
-              projectID: projectID,
+              fileAuthor: Auth.getProfile().data.username,
+              projectID,
             },
           });
           setFileName('');
