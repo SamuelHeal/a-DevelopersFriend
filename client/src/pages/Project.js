@@ -21,7 +21,6 @@ import BackEndModal from '../components/Modal/BackEndModal'
 import Auth from '../utils/auth';
 
 
-
 const SingleProject = () => {
 
     const username = Auth.getProfile().data.username
@@ -34,6 +33,8 @@ const SingleProject = () => {
     })
 
     const projects = data?.project || {};
+
+
 
     
 
@@ -60,9 +61,6 @@ const SingleProject = () => {
                         <FolderList folders={projects.folders}/>
 
                     </div>
-
-                    
-
                 </div>
 
             </div>

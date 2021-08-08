@@ -8,6 +8,8 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import { StoreProvider } from './utils/GlobalState';
+
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -49,45 +51,47 @@ function App() {
       <Router>
         <div className="mainContainer">
           <div className="container">
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/login">
-              <LoginHeader />
-              <Login />
-            </Route>
-            <Route exact path="/signup">
-              <LoginHeader />
-              <Signup />
-            </Route>
-            <Route exact path="/me">
-              <Header />
-              <Profile />
-            </Route>
-            <Route exact path="/projects/:projectID">
-              <Header />
-              <Project />
-            </Route>
-            <Route exact path='/folder/:folderID'>
-              <Header />
-              <Folder />
-            </Route>
-            <Route exact path='/frontfile/:fileID'>
-              <Header />
-              <FrontEnd />
-            </Route>
-            <Route exact path='/folderfrontfile/:fileID'>
-              <Header />
-              <FrontEndFromFolder />
-            </Route>
-            <Route exact path='/backfile/:fileID'>
-              <Header />
-              <BackEnd />
-            </Route>
-            <Route exact path='/folderbackfile/:fileID'>
-              <Header />
-              <BackEndFromFolder />
-            </Route>
+            <StoreProvider>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/login">
+                <LoginHeader />
+                <Login />
+              </Route>
+              <Route exact path="/signup">
+                <LoginHeader />
+                <Signup />
+              </Route>
+              <Route exact path="/me">
+                <Header />
+                <Profile />
+              </Route>
+              <Route exact path="/projects/:projectID">
+                <Header />
+                <Project />
+              </Route>
+              <Route exact path='/folder/:folderID'>
+                <Header />
+                <Folder />
+              </Route>
+              <Route exact path='/frontfile/:fileID'>
+                <Header />
+                <FrontEnd />
+              </Route>
+              <Route exact path='/folderfrontfile/:fileID'>
+                <Header />
+                <FrontEndFromFolder />
+              </Route>
+              <Route exact path='/backfile/:fileID'>
+                <Header />
+                <BackEnd />
+              </Route>
+              <Route exact path='/folderbackfile/:fileID'>
+                <Header />
+                <BackEndFromFolder />
+              </Route>
+            </StoreProvider>
           </div>
         </div>
       </Router>
