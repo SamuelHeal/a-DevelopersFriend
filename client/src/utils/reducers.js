@@ -8,6 +8,8 @@ import {
 export const reducer = (state, action) => {
   switch (action.type) {
     case GET_PROJECTS:
+        console.log(action)
+
       return {
         ...state,
         projects: [...action.projects],
@@ -29,33 +31,6 @@ export const reducer = (state, action) => {
         projects: newState,
       };
 
-    // case CLEAR_CART:
-    //   return {
-    //     ...state,
-    //     cartOpen: false,
-    //     cart: [],
-    //   };
-
-    // case TOGGLE_CART:
-    //   return {
-    //     ...state,
-    //     cartOpen: !state.cartOpen,
-    //   };
-
-    // case UPDATE_CATEGORIES:
-    //   return {
-    //     ...state,
-    //     categories: [...action.categories],
-    //   };
-
-    // case UPDATE_CURRENT_CATEGORY:
-    //   return {
-    //     ...state,
-    //     currentCategory: action.currentCategory,
-    //   };
-
-    // Return the state as is in the event that the `action.type` passed to our reducer was not accounted for by the developers
-    // This saves us from a crash.
     default:
       return state;
   }
