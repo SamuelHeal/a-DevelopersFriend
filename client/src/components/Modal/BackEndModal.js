@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -6,6 +6,7 @@ import { useMutation } from '@apollo/client';
 import './modal.css'
 
 
+import BackEndFileList from '../fileLists/BackEndFileList'
 
 import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
 import { ADD_BACK_END_FILE_TO_PROJECT} from '../../utils/mutations';
@@ -27,6 +28,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function BackEndModal() {
+  const [currentFiles, setFiles] = useState({});
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -48,6 +51,9 @@ function BackEndModal() {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        const newFile = []
+
     
         try {
           const { data } = await addBackEndFile({
@@ -57,9 +63,12 @@ function BackEndModal() {
               projectID: projectID,
             },
           });
+          newFile.push(...currentFiles)
+          newFile.push(data.addBackEndFileToProject)
           setFileName('');
           setCharacterCount(0)
-          window.location.reload()
+          setFiles(newFile)
+          closeModal()
         } catch (err) {
           console.error(err);
         }
@@ -77,6 +86,20 @@ function BackEndModal() {
     const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectID: projectID }
     })    
+
+    const projects = data?.project || {};
+
+    console.log(projects)
+
+    useEffect(() => {
+
+      if (data) {
+  
+        setFiles(projects.backEndFiles)
+  
+      }
+      
+    }, [data, loading]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -119,6 +142,8 @@ function BackEndModal() {
         </form>
         <a className='modalFrontClose' onClick={closeModal}>x</a>
       </Modal>
+      <BackEndFileList files={currentFiles} />
+
     </div>
   );
 }

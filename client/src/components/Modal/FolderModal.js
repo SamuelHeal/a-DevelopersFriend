@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import './modal.css'
 
@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 
+import FolderList from '../fileLists/FolderList'
 
 import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
 import { ADD_FOLDER_TO_PROJECT } from '../../utils/mutations';
@@ -28,6 +29,9 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FolderModal() {
+
+  const [currentFolders, setFolders] = useState({});
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -47,6 +51,9 @@ function FolderModal() {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        const newFolder = []
+
     
         try {
           const { data } = await addFolder({
@@ -56,9 +63,12 @@ function FolderModal() {
               projectID: projectID,
             },
           });
+          newFolder.push(...currentFolders)
+          newFolder.push(data.addFolderToProject)
           setFolderName('');
           setCharacterCount(0)
-          window.location.reload()
+          setFolders(newFolder)
+          closeModal()
         } catch (err) {
           console.error(err);
         }
@@ -76,6 +86,21 @@ function FolderModal() {
     const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectID: projectID }
     })    
+
+    
+    const projects = data?.project || {};
+
+    useEffect(() => {
+
+      if (data) {
+  
+        setFolders(projects.folders)
+  
+      }
+      
+    }, [data, loading]);
+
+
 
     if (loading) {
         return <div>Loading...</div>;
@@ -118,6 +143,8 @@ function FolderModal() {
         </form>
         <a className='modalClose' onClick={closeModal}>x</a>
       </Modal>
+      <FolderList folders={currentFolders}/>
+
     </div>
   );
 }

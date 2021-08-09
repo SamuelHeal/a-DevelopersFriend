@@ -26,7 +26,12 @@ function BackEnd() {
         )
     }
 
-    if (username !== data.frontEndFile.fileAuthor){
+    const refresh = async (event) => {
+        event.preventDefault()
+        window.location.replace(`/projects/${data.backEndFile.projectID}`)
+    }
+
+    if (username !== data.backEndFile.fileAuthor){
         return <Redirect to="/me" />;
     }
 
@@ -34,7 +39,7 @@ function BackEnd() {
         <div className="backEndContainer">
             <div className='backEndButtonContainer'>
             <Link to={`/projects/${data.backEndFile.projectID}`}>
-                <button>Back</button>
+                <button onClick={refresh}>Back</button>
             </Link>
             </div>
             

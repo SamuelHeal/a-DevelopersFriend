@@ -4,20 +4,12 @@ import { useQuery, useMutation } from '@apollo/client';
 
 import { ADD_PROJECT } from '../utils/mutations';
 
-import '../components/addProject/addProject.css'
 
 
 import { QUERY_ME } from '../utils/queries';
 
 import ProjectList from '../components/projectList/index'
-import AddNewProject from '../components/addProject/index'
 
-import { useStoreContext } from '../utils/GlobalState';
-import {
-  ADD_PROJECTS,
-  DELETE_PROJECTS,
-  GET_PROJECTS
-} from '../utils/actions';
 
 
 import './Profile.css'
@@ -25,8 +17,6 @@ import './Profile.css'
 import Auth from '../utils/auth';
 
 const Profile = () => {
-
-  const [state, dispatch] = useStoreContext();
 
   const [currentProjects, setProjects] = useState({});
 
@@ -36,20 +26,17 @@ const Profile = () => {
   
   const user = data?.me || {};  
 
-  const { projects } = state
 
 
   useEffect(() => {
-    if (projects.length) {
-      setProjects(projects);
-    }
-    else if (data) {
 
-      setProjects(data.me.projects)
-
-    }
+    if (!currentProjects.length) {
+      if (data) {
+        setProjects(data.me.projects)
+      }
+    }  
     
-  }, [projects, data, loading, dispatch]);
+  }, [data, loading]);
 
   const [projectName, setProjectName] = useState('')
     const [characterCount, setCharacterCount] = useState(0)

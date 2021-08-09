@@ -1,3 +1,61 @@
+.formContainer {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addProjectForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px
+}
+
+.formContainer {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.formContainer h2 {
+    font-size: 150%;
+    margin-bottom: 15px;
+}
+
+.formContainer p {
+    font-size: 60%
+}
+
+.projectInput {
+    border-style: solid;
+    border-color: var(--titleColour);
+    background-color: var(--backgroundColour);
+    height: 35px;
+    width: 100%;
+    outline: none;
+    color: rgb(158, 157, 157);
+    border-radius: 7px;
+}
+
+.button {
+    background-color: var(--backgroundColour);
+    color: black;
+    border-style: solid;
+    border-radius: 7px;
+    padding: 5px;
+    border-color: var(--titleColour);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    background-color: black;
+    color: var(--backgroundColour);
+}
+
 
 
 .profileContainer {

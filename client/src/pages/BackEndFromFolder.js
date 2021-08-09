@@ -22,6 +22,11 @@ function BackEndFromFolder() {
         variables: { fileID }
     })
 
+    const refresh = async (event) => {
+        event.preventDefault()
+        window.location.replace(`/folder/${data.backEndFile.projectID}`)
+    }
+
     if (loading) {
         return (
             <h1>loading...</h1>
@@ -36,7 +41,7 @@ function BackEndFromFolder() {
         <div className="backEndContainer">
             <div className='backEndButtonContainer'>
             <Link to={`/folder/${data.backEndFile.projectID}`}>
-                <button>Back</button>
+                <button onClick={refresh}>Back</button>
             </Link>
             </div>
            

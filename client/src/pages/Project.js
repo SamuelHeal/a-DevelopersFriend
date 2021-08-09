@@ -11,11 +11,8 @@ import { useQuery } from '@apollo/client';
 import { QUERY_SINGLE_PROJECT} from '../utils/queries';
 
 
-import FolderList from '../components/fileLists/FolderList'
 import FolderModal from '../components/Modal/FolderModal'
-import FrontEndFileList from '../components/fileLists/FrontEndFileList'
 import FrontEndModal from '../components/Modal/FrontEndModal'
-import BackEndFileList from '../components/fileLists/BackEndFileList'
 import BackEndModal from '../components/Modal/BackEndModal'
 
 import Auth from '../utils/auth';
@@ -34,9 +31,11 @@ const SingleProject = () => {
 
     const projects = data?.project || {};
 
+    const refresh = async (event) => {
+        event.preventDefault()
+        window.location.replace('/me')
+    }
 
-
-    
 
     if (loading) {
         return <div>Loading...</div>;
@@ -50,29 +49,20 @@ const SingleProject = () => {
     return (
         <div className='projectContainer'> 
             <Link className='projectBackLink'to='/me'>
-                <button>Back</button>
+                <button onClick={refresh}>Back</button>
             </Link>
             <h3 className='projectName'>{projects.projectName}</h3>
             <div className='fileContainer'>
                 <h3>Folders</h3>
                 <div className='files'>
                     <FolderModal />
-                    <div className='fileBorder'>
-                        <FolderList folders={projects.folders}/>
-
-                    </div>
                 </div>
 
             </div>
             <div className='fileContainer'>
                 <h3>Front End Files</h3>
                 <div className='files'>
-                    <FrontEndModal />
-                    <div className='fileBorder'>
-                        <FrontEndFileList files={projects.frontEndFiles}/>
-
-                    </div>
-                    
+                    <FrontEndModal />      
                 </div>
                 
             </div>
@@ -80,9 +70,6 @@ const SingleProject = () => {
                 <h3>Back End Files</h3>
                 <div className='files'>
                     <BackEndModal />
-                    <div className='fileBorder'>
-                    <BackEndFileList files={projects.backEndFiles} />
-                    </div>
                     
                 </div>
                 

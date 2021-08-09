@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import './modal.css'
 
 
 import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+
 
 import Auth from '../../utils/auth';
+import FrontEndInFolderList from '../fileLists/FrontEndInFolderList';
 
 
-
+import { QUERY_SINGLE_FOLDER} from '../../utils/queries';
 import { ADD_FRONT_END_FILE_TO_FOLDER } from '../../utils/mutations';
 
 const customStyles = {
@@ -26,6 +29,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FrontEndFolderModal() {
+  const [currentFiles, setFiles] = useState({});
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -47,6 +52,9 @@ function FrontEndFolderModal() {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        const newFile = []
+
     
         try {
           const { data } = await addFrontEndFileToFolder({
@@ -57,9 +65,12 @@ function FrontEndFolderModal() {
                 
             },
           });
+          newFile.push(...currentFiles)
+          newFile.push(data.addFrontEndFileToFolder)
           setFileName('');
           setCharacterCount(0)
-          window.location.reload()
+          setFiles(newFile)
+          closeModal()
         } catch (err) {
           console.error(err);
         }
@@ -73,6 +84,21 @@ function FrontEndFolderModal() {
           setCharacterCount(value.length);
         }
       };
+
+      const { loading, data } = useQuery(QUERY_SINGLE_FOLDER, {
+        variables: { folderID: folderID }
+    })
+
+    const folders = data?.folder.frontEndFiles || {};   
+
+
+    useEffect(() => {
+
+      if (data) {
+        setFiles(folders)
+      }
+      
+    }, [data, loading]);
 
   return (
     <div className='modalContainer'>
@@ -111,6 +137,8 @@ function FrontEndFolderModal() {
         </form>
         <a className='modalFrontClose' onClick={closeModal}>x</a>
       </Modal>
+      <FrontEndInFolderList files={currentFiles}/>
+
     </div>
   );
 }

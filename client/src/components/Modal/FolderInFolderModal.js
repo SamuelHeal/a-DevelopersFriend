@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import './modal.css'
 
 
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 
+import FolderList from '../fileLists/FolderList'
 
-import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
+import { QUERY_SINGLE_FOLDER} from '../../utils/queries';
 import { ADD_FOLDER_TO_FOLDER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
@@ -27,6 +29,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FolderInFolderModal() {
+  const [currentFolders, setFolders] = useState({});
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -44,10 +48,28 @@ function FolderInFolderModal() {
 
     const { folderID } = useParams()
 
+    const { loading, data } = useQuery(QUERY_SINGLE_FOLDER, {
+        variables: { folderID: folderID }
+    })
+
+    const folders = data?.folder.folders || {};   
+
+
+    useEffect(() => {
+
+      if (data) {
+        setFolders(folders)
+      }
+      
+    }, [data, loading]);
+
     const [addFolder, { error }] = useMutation(ADD_FOLDER_TO_FOLDER)
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        const newFolder = []
+
     
         try {
           const { data } = await addFolder({
@@ -57,9 +79,12 @@ function FolderInFolderModal() {
               projectID: folderID,
             },
           });
+          newFolder.push(...currentFolders)
+          newFolder.push(data.addFolderToFolder)
           setFolderName('');
           setCharacterCount(0)
-          window.location.reload()
+          setFolders(newFolder)
+          closeModal()
         } catch (err) {
           console.error(err);
         }
@@ -73,6 +98,10 @@ function FolderInFolderModal() {
             setCharacterCount(value.length);
         }
     };
+
+    if (loading) {
+      return <div>Loading...</div>;
+  }
 
   return (
     <div className='modalContainer'>
@@ -109,6 +138,7 @@ function FolderInFolderModal() {
                     </form>
                   <a className='modalClose' onClick={closeModal}>x</a>
       </Modal>
+      <FolderList folders={currentFolders}/>
     </div>
   );
 }

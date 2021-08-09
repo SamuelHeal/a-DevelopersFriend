@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import './modal.css'
 
@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 
+import FrontEndFileList from '../fileLists/FrontEndFileList'
 
 import { QUERY_SINGLE_PROJECT} from '../../utils/queries';
 import { ADD_FRONT_END_FILE_TO_PROJECT} from '../../utils/mutations';
@@ -28,6 +29,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FrontEndModal() {
+  const [currentFiles, setFiles] = useState({});
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -47,6 +50,9 @@ function FrontEndModal() {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        const newFile = []
+
     
         try {
           const { data } = await addFrontEndFile({
@@ -56,9 +62,12 @@ function FrontEndModal() {
               projectID,
             },
           });
+          newFile.push(...currentFiles)
+          newFile.push(data.addFrontEndFileToProject)
           setFileName('');
           setCharacterCount(0)
-          window.location.reload()
+          setFiles(newFile)
+          closeModal()
         } catch (err) {
           console.error(err);
         }
@@ -76,6 +85,18 @@ function FrontEndModal() {
     const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
         variables: { projectID: projectID }
     })    
+
+    const projects = data?.project || {};
+
+    useEffect(() => {
+
+      if (data) {
+  
+        setFiles(projects.frontEndFiles)
+  
+      }
+      
+    }, [data, loading]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -116,6 +137,8 @@ function FrontEndModal() {
         </form>
         <a className='modalFrontClose' onClick={closeModal}>x</a>
       </Modal>
+      <FrontEndFileList files={currentFiles}/>
+
     </div>
   );
 }
