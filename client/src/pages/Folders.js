@@ -10,6 +10,8 @@ import { useQuery } from '@apollo/client';
 
 
 import { QUERY_SINGLE_FOLDER } from '../utils/queries';
+import { QUERY_SINGLE_PROJECT} from '../utils/queries';
+
 
 import Auth from '../utils/auth';
 
@@ -30,10 +32,12 @@ function Folders() {
     })
 
     const folders = data?.folder || {};   
+
     
     const refresh = async (event) => {
         event.preventDefault()
         window.location.replace(`/projects/${folders.projectID}`)
+        
     }
 
     if (loading) {
@@ -47,9 +51,9 @@ function Folders() {
     return (
         
         <div className='projectContainer'> 
-            <Link className='folderBackLink'to={`/projects/${folders.projectID}`}>
+            {/* <Link className='folderBackLink'to={`/projects/${folders.projectID}`}> */}
                 <button onClick={refresh}>Back</button>
-            </Link>
+            {/* </Link> */}
             <h3 className='projectName'>{folders.folderName}</h3>
             <div className='fileContainer'>
                 <h3>Folders</h3>

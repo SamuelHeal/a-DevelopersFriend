@@ -92,8 +92,6 @@ function BackEndModal() {
 
     const projects = data?.project || {};
 
-    console.log(projects)
-
     useEffect(() => {
 
       if (data) {

@@ -7,6 +7,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
+
 import { QUERY_FRONT_END_FILE } from '../utils/queries'
 import { QUERY_PROJECTS } from '../utils/queries';
 
@@ -53,7 +54,6 @@ function FrontEnd() {
                 <EditorJS javascript={data.frontEndFile.javascript} fileID={fileID}/>
 
             </div>
-            
         </div>
     )
 }

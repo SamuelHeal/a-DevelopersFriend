@@ -137,7 +137,7 @@ const Profile = () => {
                   <div className='formContainer'>
                       <input 
                       name='projectName' 
-                      placeholder='Collection Name'
+                      placeholder='Project Name'
                       value={projectName}
                       className='projectInput'
                       onChange={handleChange}
@@ -148,7 +148,7 @@ const Profile = () => {
                   </p>
                   <div>
                       <button className='button' type='submit'>
-                          Add Collection
+                          Add Project
                       </button>
                   </div>
                   {error && (
