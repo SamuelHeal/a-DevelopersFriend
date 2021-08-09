@@ -3,14 +3,15 @@ import Modal from 'react-modal';
 import './modal.css'
 
 
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 
-import FolderList from '../fileLists/FolderList'
 
 import { QUERY_SINGLE_FOLDER} from '../../utils/queries';
 import { ADD_FOLDER_TO_FOLDER } from '../../utils/mutations';
+import { REMOVE_FOLDER } from '../../utils/mutations';
+
 
 import Auth from '../../utils/auth';
 
@@ -29,7 +30,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FolderInFolderModal() {
-  const [currentFolders, setFolders] = useState({});
+  const [currentFolders, setFolders] = useState([]);
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -64,6 +65,8 @@ function FolderInFolderModal() {
     }, [data, loading]);
 
     const [addFolder, { error }] = useMutation(ADD_FOLDER_TO_FOLDER)
+    const [removeFolder, { removeError }] = useMutation(REMOVE_FOLDER)
+
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -98,6 +101,28 @@ function FolderInFolderModal() {
             setCharacterCount(value.length);
         }
     };
+
+    const deleteFolder = async (folderID) => {
+      try {
+          const { data } = await removeFolder({
+              variables: { filter: folderID }
+          })
+          
+          const newArray = []
+
+          for (let i = 0; i < currentFolders.length; i++) {
+              if (currentFolders[i]._id !== folderID) {
+                  newArray.push(currentFolders[i])
+              }
+          }
+          
+          setFolders(newArray)
+
+      } catch (err) {
+          console.error(err);
+        }
+      
+  }
 
     if (loading) {
       return <div>Loading...</div>;
@@ -138,8 +163,28 @@ function FolderInFolderModal() {
                     </form>
                   <a className='modalClose' onClick={closeModal}>x</a>
       </Modal>
-      <FolderList folders={currentFolders}/>
-    </div>
+      {currentFolders && currentFolders.map((folder) => {
+                return (
+                    <div key={folder._id} name={folder._id} className="folderDiv">  
+                        
+                        <div className='folderHeader'>
+                        <a className='closeButtonFolder' onClick={() => {
+                                    deleteFolder(folder._id);                                    
+                                    }}>
+                                    <i className="fi-rr-cross-small"></i>
+                                </a>
+                    </div> 
+                    <Link className='link' to={`/folder/${folder._id}`}>
+                    <i className="fi-rr-folder icon">
+                    </i>  
+                    <h3>{folder.folderName}</h3>
+
+                    </Link>
+                </div>
+               
+                )
+                
+            })}    </div>
   );
 }
 

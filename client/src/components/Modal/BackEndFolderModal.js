@@ -4,13 +4,14 @@ import './modal.css'
 
 import { useQuery } from '@apollo/client';
 
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import BackEndInFolderList from '../fileLists/BackEndInFolderList'
 
 
 import { QUERY_SINGLE_FOLDER} from '../../utils/queries';
 import { ADD_BACK_END_FILE_TO_FOLDER } from '../../utils/mutations';
+import { REMOVE_BACK_END_FILE_FROM_FOLDER } from '../../utils/mutations';
+
 
 import Auth from '../../utils/auth';
 
@@ -29,7 +30,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function FrontEndFolderModal() {
-  const [currentFiles, setFiles] = useState({});
+  const [currentFiles, setFiles] = useState([]);
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -48,6 +49,8 @@ function FrontEndFolderModal() {
     const { folderID } = useParams()
 
     const [addBackEndFileToFolder, { error }] = useMutation(ADD_BACK_END_FILE_TO_FOLDER)
+    const [removeBackFileFromFolder, { removeError }] = useMutation(REMOVE_BACK_END_FILE_FROM_FOLDER)
+
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -99,6 +102,32 @@ function FrontEndFolderModal() {
       
     }, [data, loading]);
 
+    const deleteBackFileFromFolder = async (fileID) => {
+      try {
+          const { data } = await removeBackFileFromFolder({
+              variables: { 
+                  filter: fileID,
+                  projectID: folderID
+              }
+          })
+
+          const newArray = []
+
+          for (let i = 0; i < currentFiles.length; i++) {
+              if (currentFiles[i]._id !== fileID) {
+                  newArray.push(currentFiles[i])
+
+              }
+          }
+          
+          setFiles(newArray)
+
+      } catch (err) {
+          console.error(err);
+        }
+      
+  }
+
   return (
     <div className='modalContainer'>
       <button onClick={openModal}>Add File</button>
@@ -134,8 +163,28 @@ function FrontEndFolderModal() {
         </form>
         <a className='modalFrontClose' onClick={closeModal}>x</a>
       </Modal>
-      <BackEndInFolderList files={currentFiles}/>
+      {currentFiles && currentFiles.map((file) => {
+                return (
+                    <div key={file._id} className="folderDiv">  
+                        <div className='folderHeader'>
+                        <a className='closeButtonFolder' onClick={() => {
+                                    deleteBackFileFromFolder(file._id);                                    
+                                    }}>
+                                    <i className="fi-rr-cross-small"></i>
+                                </a>
+                    </div> 
+                    <Link className='link' to={`/folderbackfile/${file._id}`}>
 
+                    <i className="fi-rr-folder icon">
+                    </i>  
+                    <h3>{file.fileName}</h3>
+
+                    </Link>
+                </div>
+               
+                )
+                
+            })}
     </div>
   );
 }

@@ -9,7 +9,7 @@
     height: 50px;
     margin: 20px;
     padding: 10px;
-    color: black;
+    color: rgb(148, 200, 248);
     transition: all 0.3s;
 }
 
@@ -18,11 +18,11 @@
 }
 
 .folderDiv:hover h3 {
-    color: rgb(248, 101, 47);
+    color: rgb(136, 196, 253);
 }
 
 .folderDiv:hover .icon {
-    color: rgb(248, 101, 47);
+    color: rgb(136, 196, 253);
 }
 
 .folderHeader {
@@ -55,7 +55,7 @@
 .icon {
     font-size: 50px;
     margin: auto;
-    color: rgb(245, 145, 109);
+    color: rgb(165, 208, 248);
 }
 
 .folderDiv p {
@@ -65,5 +65,5 @@
 
 .folderDiv h3 {
     font-size: 70%;
-    color: black;
+    color: rgb(165, 208, 248);
 }

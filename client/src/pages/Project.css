@@ -6,7 +6,6 @@
     padding: 20px;
     border-radius: 7px;
     height: 85vh;
-    /* background-color: aliceblue; */
 }
 
 .projectContainer button {
@@ -81,7 +80,7 @@
 }
 
 .projectName {
-    color: rgb(248, 101, 47);
+    color: black;
     font-size: 250%;
 }
 

@@ -2,6 +2,8 @@ import React from 'react'
 import './Folder.css'
 import { Redirect, Link } from 'react-router-dom';
 
+import '../components/fileLists/FolderList.css'
+
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -12,11 +14,8 @@ import { QUERY_SINGLE_FOLDER } from '../utils/queries';
 import Auth from '../utils/auth';
 
 
-import FolderList from '../components/fileLists/FolderList'
 import FolderInFolderModal from '../components/Modal/FolderInFolderModal';
-import FrontEndInFolderList from '../components/fileLists/FrontEndInFolderList';
 import FrontEndFolderModal from '../components/Modal/FrontEndFolderModal'
-import BackEndInFolderList from '../components/fileLists/BackEndInFolderList'
 import BackEndFolderModal from '../components/Modal/BackEndFolderModal';
 
 
