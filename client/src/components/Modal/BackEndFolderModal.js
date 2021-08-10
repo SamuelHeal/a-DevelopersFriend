@@ -152,7 +152,7 @@ function FrontEndFolderModal() {
             <p className={`characterCount ${characterCount === 30 || error ? 'text-danger' : ''}`}>
             Character Count: {characterCount}/30
             </p>
-                <button className='buttonModal' type='submit'>
+                <button className='button' type='submit'>
                     Add Folder
                 </button>
             {error && (
