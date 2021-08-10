@@ -85,3 +85,29 @@
 
 }
 
+
+@media only screen and (max-width: 900px) {
+    .profileContainer {
+        flex-direction: column;
+    }
+
+    .mainListContainer {
+        width: 500px;
+        height: 40vh;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+  }
+
+  @media only screen and (max-width: 550px) {
+
+    .addProjectForm {
+        width: 200px
+    }
+    .mainListContainer {
+        width: 300px;
+
+    }
+
+  }

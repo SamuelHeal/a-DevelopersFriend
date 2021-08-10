@@ -38,6 +38,8 @@ function EditorJS({
 
     return (
         <div className='editorContainer'>
+            <h5>Javascript</h5>
+
             <AceEditor
                 style={{
                     height: '300px',

@@ -1,13 +1,14 @@
 .modalContainer {
     height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     text-align: center;
+    width: 100%
 }
 
 .modalContainer button {
     margin-bottom: 0px;
+    width: 150px
 }
 
 
@@ -79,4 +80,33 @@ form button {
     background-color: white;
     margin: auto;
 }
+
+.wrapping {
+    
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+}
+
+@media only screen and (max-width: 500px) {
+
+    .modalContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modalContainer button {
+        margin-bottom: 15px;
+        margin: auto;
+    }
+
+  }
 

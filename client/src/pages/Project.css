@@ -33,10 +33,11 @@
 
 
 .fileContainer {
-    width: 95%;
+    width: 90%;
     height: 33%;
     margin-top: 20px;
     border-bottom: 3px solid black;
+    margin: auto;
 }
 
 .folder {
@@ -53,15 +54,11 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    overflow-x: auto;
+    /* overflow-x: auto;
     overflow-y: hidden;
-    white-space: nowrap;
+    white-space: nowrap; */
     margin-top: 10px;
-}
-
-.files button {
-    width: 150px;
-    margin-right: 20px;
+    margin: auto;
 }
 
 .theFolders {
@@ -84,7 +81,43 @@
     font-size: 250%;
 }
 
+.backDiv {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.backDiv button {
+    width: 100%
+}
+
 .projectBackLink {
-    width: 50px;
+    width: 100px;
     height: 35px;
 }
+
+@media only screen and (max-width: 800px) {
+
+    .backDiv {
+        justify-content: center;
+    }
+
+
+  }
+
+  @media only screen and (max-width: 500px) {
+
+    .files {
+        flex-direction: column;
+    }
+
+    .projectContainer {
+        height: 100vh
+    }
+
+    .fileContainer {
+        height: 45%
+    }
+
+  }
+

@@ -33,7 +33,7 @@ function BackEndFromFolder() {
         )
     }
 
-    if (username !== data.frontEndFile.fileAuthor){
+    if (username !== data.backEndFile.fileAuthor){
         return <Redirect to="/me" />;
     }
 

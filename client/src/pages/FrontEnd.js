@@ -44,9 +44,12 @@ function FrontEnd() {
 
     return (
         <div className="frontEndContainer">
-            <Link to={`/projects/${data.frontEndFile.projectID}`}>
-                <button onClick={refresh}>Back</button>
-            </Link>
+            <div className='backDiv'>
+                <Link className='projectBackLink'to={`/projects/${data.frontEndFile.projectID}`}>
+                    <button onClick={refresh}>Back</button>
+                </Link>
+            </div>
+            
             <h3 className='projectName'>{data.frontEndFile.fileName}</h3>
             <div className='codeEditorContainer'>
                 <EditorHTML html={data.frontEndFile.html} fileID={fileID}/>

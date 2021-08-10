@@ -168,6 +168,7 @@ function FolderModal() {
         </form>
         <a className='modalClose' onClick={closeModal}>x</a>
       </Modal>
+      <div className='wrapping'>
       {currentFolders && currentFolders.map((folder) => {
                 return (
                     <div key={folder._id} name={folder._id} className="folderDiv">  
@@ -190,6 +191,8 @@ function FolderModal() {
                 )
                 
             })}
+      </div>
+      
 
 
 

@@ -41,3 +41,38 @@
     background-color: black;
     color: #f7f7ea;
 }
+
+.backDiv {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.backDiv button {
+    width: 100%;
+
+    
+}
+
+.projectBackLink {
+    width: 100px;
+    height: 35px;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .codeEditorContainer {
+        flex-direction: column;
+    }
+
+    .backDiv {
+        justify-content: center;
+    }
+
+    .backDiv button {
+        position: relative;
+        left: -20px
+        
+    }
+
+  }

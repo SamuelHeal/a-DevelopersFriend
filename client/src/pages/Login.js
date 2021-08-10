@@ -79,6 +79,7 @@ const Login = (props) => {
                   Submit
                 </button>
               </form>
+              
             )}
 
             {error && (
@@ -87,6 +88,8 @@ const Login = (props) => {
               </div>
             )}
           </div>
+          <Link className='signupButton2' to='/signup'>Sign Up</Link>
+
         </div>
       </div>
       <div className="signupContainer">

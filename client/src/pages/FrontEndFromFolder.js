@@ -45,9 +45,12 @@ function FrontEndFromFolder() {
 
     return (
         <div className="frontEndContainer">
-            <Link to={`/folder/${data.frontEndFile.projectID}`}>
-                <button onClick={refresh}>Back</button>
-            </Link>
+            <div className='backDiv'>
+                <Link className='projectBackLink' to={`/folder/${data.frontEndFile.projectID}`}>
+                    <button onClick={refresh}>Back</button>
+                </Link>
+            </div>
+            
             <h3 className='projectName'>{data.frontEndFile.fileName}</h3>
             <div className='codeEditorContainer'>
                 <EditorHTML html={data.frontEndFile.html} fileID={fileID}/>

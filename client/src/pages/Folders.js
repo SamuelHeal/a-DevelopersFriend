@@ -51,9 +51,12 @@ function Folders() {
     return (
         
         <div className='projectContainer'> 
-            {/* <Link className='folderBackLink'to={`/projects/${folders.projectID}`}> */}
+        <div className='backDiv'>
+            <Link className='folderBackLink'to={`/projects/${folders.projectID}`}>
                 <button onClick={refresh}>Back</button>
-            {/* </Link> */}
+            </Link>
+        </div>
+            
             <h3 className='projectName'>{folders.folderName}</h3>
             <div className='fileContainer'>
                 <h3>Folders</h3>

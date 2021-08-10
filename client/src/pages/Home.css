@@ -69,3 +69,16 @@
   .homeContainer span a:hover{
     transform: translateZ(-25px) rotateX(-90deg);
   }
+
+
+  @media only screen and (max-width: 455px) {
+    .homeContainer h1 {
+      font-size: 200%;
+    }
+  }
+
+  @media only screen and (max-width: 300px) {
+    .homeContainer h1 {
+      font-size: 150%;
+    }
+  }

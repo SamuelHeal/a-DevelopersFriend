@@ -12,12 +12,11 @@ const Header = () => {
   };
   return (
     <header className="headerContainer">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
+      <div className="container flex-row justify-space-between-lg justify-space-between-md justify-center align-center">
         <div>
           <Link className='link' to="/">
             <h1 className="title">aDevelopersFriend</h1>
           </Link>
-          <p className="m-0">Who needs memory?</p>
         </div>
         <div>
           {Auth.loggedIn() ? (

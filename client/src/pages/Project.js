@@ -48,9 +48,12 @@ const SingleProject = () => {
 
     return (
         <div className='projectContainer'> 
-            <Link className='projectBackLink'to='/me'>
+        <div className='backDiv'>
+        <Link className='projectBackLink' to='/me'>
                 <button onClick={refresh}>Back</button>
             </Link>
+        </div>
+            
             <h3 className='projectName'>{projects.projectName}</h3>
             <div className='fileContainer'>
                 <h3>Folders</h3>
