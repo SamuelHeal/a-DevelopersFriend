@@ -156,7 +156,7 @@ function FolderModal() {
             Character Count: {characterCount}/30
             </p>
             
-            <button type='submit'>
+            <button className='button' type='submit'>
                 Add Folder
             </button>
             
