@@ -113,8 +113,7 @@ const Profile = () => {
   if (!user?.username) {
     return (
       <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
+        Please Login or Signup to view and create your projects!
       </h4>
     );
   }
@@ -160,7 +159,7 @@ const Profile = () => {
             </>
         ) : (
           <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          Please Login or Signup
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
         )}
