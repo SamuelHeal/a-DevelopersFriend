@@ -29,6 +29,7 @@ function EditorJS({
                   javascript: code,
                 },
               });
+              window.location.reload()
             } catch (err) {
               console.error(err);
             }
@@ -49,7 +50,7 @@ function EditorJS({
                     padding: '10px',
                     margin: '10px'
                 }}
-                placeholder='JAVASCRIPT'
+                placeholder='JAVASCRIPT - does not render'
                 mode='javascript'
                 theme='twilight'
                 name='javascript'

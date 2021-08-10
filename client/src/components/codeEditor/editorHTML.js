@@ -29,6 +29,8 @@ function EditorHTML({
                   html: code,
                 },
               });
+              window.location.reload()
+
             } catch (err) {
               console.error(err);
             }

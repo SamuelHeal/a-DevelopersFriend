@@ -79,6 +79,19 @@
     background-color: red;
 }
 
+.renderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-style: solid;
+    width: 80%;
+    padding: 30px;
+    height: 50vh;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
 
 @media only screen and (max-width: 900px) {
 

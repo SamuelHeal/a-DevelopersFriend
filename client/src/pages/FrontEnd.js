@@ -7,9 +7,10 @@ import { Redirect, Link } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
+import Display from '../components/codeEditor/Display';
+
 
 import { QUERY_FRONT_END_FILE } from '../utils/queries'
-import { QUERY_PROJECTS } from '../utils/queries';
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -57,6 +58,7 @@ function FrontEnd() {
                 <EditorJS javascript={data.frontEndFile.javascript} fileID={fileID}/>
 
             </div>
+            <Display />
         </div>
     )
 }
