@@ -10,6 +10,11 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
+
+  const refresh = (event) => {
+    event.preventDefault()
+    window.location.replace(`/me`)
+  }
   return (
     <header className="headerContainer">
       <div className="container flex-row justify-space-between-lg justify-space-between-md justify-center align-center">
@@ -21,8 +26,8 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="headerButton" to="/me">
-                Projects
+              <Link to="/me">
+                <button className="headerButton" onClick={refresh}>Projects</button>
               </Link>
               <button className="headerButton" onClick={logout}>
                 Logout
