@@ -28,18 +28,18 @@ const folderSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: 'Folder',
-    }
+    },
   ],
   frontEndFiles: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'FrontEndFile'
+      ref: 'FrontEndFile',
     },
   ],
   backEndFiles: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'BackEndFile'
+      ref: 'BackEndFile',
     },
   ],
 });

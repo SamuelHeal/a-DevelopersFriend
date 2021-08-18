@@ -1,22 +1,19 @@
 :root {
-    --backgroundColour: #F6F6F2;
-    --textColour: rgb(15, 15, 15);
-    --titleColour: black;
-    --secondaryColour: rgb(133, 172, 231);
-
-    
+  --backgroundColour: #f6f6f2;
+  --textColour: rgb(15, 15, 15);
+  --titleColour: black;
+  --secondaryColour: rgb(133, 172, 231);
 }
 
-
 body {
-    background-color: var(--backgroundColour);
+  background-color: var(--backgroundColour);
 }
 
 .container {
-    width: 100%;
-    margin: auto;
+  width: 100%;
+  margin: auto;
 }
 
 .link:hover {
-    text-decoration: none;
+  text-decoration: none;
 }

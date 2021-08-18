@@ -25,11 +25,11 @@ const BackEndSchema = new Schema({
     get: (timestamp) => dateFormat(timestamp),
   },
   javascript: {
-      type: String,
-      required: false,
-      default: '',
-      trim: true
-  }
+    type: String,
+    required: false,
+    default: '',
+    trim: true,
+  },
 });
 
 const BackEndFile = model('BackEndFile', BackEndSchema);

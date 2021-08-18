@@ -1,84 +1,82 @@
 .homeContainer {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .homeContainer h1 {
-    font-size: 300%;
-    position: relative;
-    top: -70px
+  font-size: 300%;
+  position: relative;
+  top: -70px;
 }
 
-.homeContainer span{
-    position: relative;
-    display: inline-flex;
-    width: 180px;
-    height: 55px;
-    margin: 15px;
-    perspective: 1000px;
-  }
-  .homeContainer span a{
-    font-size: 19px;
-    letter-spacing: 1px;
-    transform-style: preserve-3d;
-    transform: translateZ(-25px);
-    transition: transform .25s;
-    font-family: 'Montserrat', sans-serif;
-    
-  }
-  .homeContainer span .spanA:before,
-  .homeContainer span .spanA:after{
-    position: absolute;
-    content: "LOGIN";
-    height: 55px;
-    width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 5px solid black;
-    box-sizing: border-box;
-    border-radius: 5px;
-  }
+.homeContainer span {
+  position: relative;
+  display: inline-flex;
+  width: 180px;
+  height: 55px;
+  margin: 15px;
+  perspective: 1000px;
+}
+.homeContainer span a {
+  font-size: 19px;
+  letter-spacing: 1px;
+  transform-style: preserve-3d;
+  transform: translateZ(-25px);
+  transition: transform 0.25s;
+  font-family: 'Montserrat', sans-serif;
+}
+.homeContainer span .spanA:before,
+.homeContainer span .spanA:after {
+  position: absolute;
+  content: 'LOGIN';
+  height: 55px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
 
-  .homeContainer span .spanB:before,
-  .homeContainer span .spanB:after{
-    position: absolute;
-    content: "SIGN UP";
-    height: 55px;
-    width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 5px solid black;
-    box-sizing: border-box;
-    border-radius: 5px;
-  }
-  .homeContainer span a:before{
-    color: #fff;
-    background: #000;
-    transform: rotateY(0deg) translateZ(25px);
-  }
-  .homeContainer span a:after{
-    color: #000;
-    transform: rotateX(90deg) translateZ(25px);
-  }
-  .homeContainer span a:hover{
-    transform: translateZ(-25px) rotateX(-90deg);
-  }
+.homeContainer span .spanB:before,
+.homeContainer span .spanB:after {
+  position: absolute;
+  content: 'SIGN UP';
+  height: 55px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.homeContainer span a:before {
+  color: #fff;
+  background: #000;
+  transform: rotateY(0deg) translateZ(25px);
+}
+.homeContainer span a:after {
+  color: #000;
+  transform: rotateX(90deg) translateZ(25px);
+}
+.homeContainer span a:hover {
+  transform: translateZ(-25px) rotateX(-90deg);
+}
 
-
-  @media only screen and (max-width: 455px) {
-    .homeContainer h1 {
-      font-size: 200%;
-    }
+@media only screen and (max-width: 455px) {
+  .homeContainer h1 {
+    font-size: 200%;
   }
+}
 
-  @media only screen and (max-width: 300px) {
-    .homeContainer h1 {
-      font-size: 150%;
-    }
+@media only screen and (max-width: 300px) {
+  .homeContainer h1 {
+    font-size: 150%;
   }
+}

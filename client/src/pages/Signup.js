@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
-import './Signup.css'
+import './Signup.css';
 import Auth from '../utils/auth';
 
 const Signup = () => {
@@ -40,59 +40,51 @@ const Signup = () => {
   };
 
   return (
-   
-        <div className="signUpContainer">
-          <div className="secondSignUpContainer">
-            <h4>Sign Up</h4>
+    <div className='signUpContainer'>
+      <div className='secondSignUpContainer'>
+        <h4>Sign Up</h4>
 
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/me">to your profile.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your username"
-                  name="username"
-                  type="text"
-                  value={formState.name}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="password"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="signupButton3"
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+        {data ? (
+          <p>
+            Success! You may now head <Link to='/me'>to your profile.</Link>
+          </p>
+        ) : (
+          <form onSubmit={handleFormSubmit}>
+            <input
+              className='form-input'
+              placeholder='Your username'
+              name='username'
+              type='text'
+              value={formState.name}
+              onChange={handleChange}
+            />
+            <input
+              className='form-input'
+              placeholder='Your email'
+              name='email'
+              type='email'
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <input
+              className='form-input'
+              placeholder='password'
+              name='password'
+              type='password'
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <button className='signupButton3' type='submit'>
+              Submit
+            </button>
+          </form>
+        )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
-        </div>
-      
+        {error && (
+          <div className='my-3 p-3 bg-danger text-white'>{error.message}</div>
+        )}
+      </div>
+    </div>
   );
 };
 

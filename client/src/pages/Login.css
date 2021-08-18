@@ -1,137 +1,134 @@
 .loginContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 7px;
-    width: 70vw;
-    height: 80vh;
-    margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  width: 70vw;
+  height: 80vh;
+  margin: auto;
 }
 
 .secondLoginContainer {
-    background: radial-gradient(var(--backgroundColour), #f7f7ea);
-    box-shadow: 0px 0px 5px 0px black;
-    width: 40%;
-    height: 50%;
-    border-radius: 7px 0px 0px 7px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  background: radial-gradient(var(--backgroundColour), #f7f7ea);
+  box-shadow: 0px 0px 5px 0px black;
+  width: 40%;
+  height: 50%;
+  border-radius: 7px 0px 0px 7px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .signupContainer {
-    display: flex;
-    color: var(--backgroundColour);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: radial-gradient(black, rgb(27, 27, 27));
-    box-shadow: 0px 0px 5px 0px black;
-    width: 40%;
-    height: 50%;
-    border-radius: 0px 7px 7px 0px;
+  display: flex;
+  color: var(--backgroundColour);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(black, rgb(27, 27, 27));
+  box-shadow: 0px 0px 5px 0px black;
+  width: 40%;
+  height: 50%;
+  border-radius: 0px 7px 7px 0px;
 }
 
 .signupContainer p {
-    font-size: 70%;
-    margin-bottom: 30px;
+  font-size: 70%;
+  margin-bottom: 30px;
 }
 
 .loginButton {
-    font-size: 110%;
-    color: black;
-    background-color: var(--backgroundColour);
-    width: 200px;
-    padding: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s;
+  font-size: 110%;
+  color: black;
+  background-color: var(--backgroundColour);
+  width: 200px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .loginButton:hover {
-    background-color: black;
-    color: var(--backgroundColour);
-    text-decoration: none;
+  background-color: black;
+  color: var(--backgroundColour);
+  text-decoration: none;
 }
 
 .signupButton {
-    font-size: 110%;
-    color: var(--backgroundColour);
-    width: 300px;
-    padding: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
-    border-color: var(--backgroundColour);
-    border-style: solid;
-    border-width: 1px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s;
+  font-size: 110%;
+  color: var(--backgroundColour);
+  width: 300px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  border-color: var(--backgroundColour);
+  border-style: solid;
+  border-width: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .signupButton:hover {
-    background-color: var(--backgroundColour);
-    color: var(--textColour);
-    text-decoration: none;
+  background-color: var(--backgroundColour);
+  color: var(--textColour);
+  text-decoration: none;
 }
 
 .signupButton2 {
-    display: none;
-    position: relative;
-    top: 20px;
-    font-size: 110%;
-    color: black;
-    background-color: var(--backgroundColour);
-    width: 200px;
-    padding: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s;
-
+  display: none;
+  position: relative;
+  top: 20px;
+  font-size: 110%;
+  color: black;
+  background-color: var(--backgroundColour);
+  width: 200px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .signupButton2:hover {
-    background-color: black;
-    color: var(--backgroundColour);
-    text-decoration: none;
+  background-color: black;
+  color: var(--backgroundColour);
+  text-decoration: none;
 }
 
-
-
 @media only screen and (max-width: 1008px) {
-    .signupContainer {
-        display: none;
-    }
-
-    .secondLoginContainer {
-        border-radius: 7px;
-    }
-
-    .signupButton2 {
-        display: inline;
-    }
+  .signupContainer {
+    display: none;
   }
 
-  @media only screen and (max-width: 810px) {
-    .secondLoginContainer {
-        width: 220px
-    }
+  .secondLoginContainer {
+    border-radius: 7px;
   }
+
+  .signupButton2 {
+    display: inline;
+  }
+}
+
+@media only screen and (max-width: 810px) {
+  .secondLoginContainer {
+    width: 220px;
+  }
+}

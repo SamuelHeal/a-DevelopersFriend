@@ -1,50 +1,48 @@
-
 .signUpContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-    width: 90vw;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  width: 90vw;
+  margin: auto;
 }
 
 .secondSignUpContainer {
-    background: radial-gradient(var(--backgroundColour), #f7f7ea);
-    box-shadow: 0px 0px 5px 0px black;
-    width: 40%;
-    height: 60%;
-    border-radius: 7px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
+  background: radial-gradient(var(--backgroundColour), #f7f7ea);
+  box-shadow: 0px 0px 5px 0px black;
+  width: 40%;
+  height: 60%;
+  border-radius: 7px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
 }
 
-
 .signupButton3 {
-    font-size: 110%;
-    color: black;
-    background-color: var(--backgroundColour);
-    width: 200px;
-    padding: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-bottom: 10px;
+  font-size: 110%;
+  color: black;
+  background-color: var(--backgroundColour);
+  width: 200px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 10px;
 }
 
 .signupButton3:hover {
-    background-color: black;
-    color: var(--backgroundColour);
-    text-decoration: none;
+  background-color: black;
+  color: var(--backgroundColour);
+  text-decoration: none;
 }

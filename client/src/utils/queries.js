@@ -40,7 +40,7 @@ export const QUERY_PROJECTS = gql`
       createdAt
     }
   }
-`
+`;
 
 export const QUERY_SINGLE_PROJECT = gql`
   query getSingleProject($projectID: ID!) {
@@ -66,7 +66,7 @@ export const QUERY_SINGLE_PROJECT = gql`
       }
     }
   }
-`
+`;
 
 export const QUERY_SINGLE_FOLDER = gql`
   query getSingleFolder($folderID: ID!) {
@@ -96,7 +96,7 @@ export const QUERY_SINGLE_FOLDER = gql`
       }
     }
   }
-`
+`;
 
 export const QUERY_FRONT_END_FILE = gql`
   query getFrontEndFile($fileID: ID!) {
@@ -110,7 +110,7 @@ export const QUERY_FRONT_END_FILE = gql`
       javascript
     }
   }
-`
+`;
 
 export const QUERY_BACK_END_FILE = gql`
   query getBackEndFile($fileID: ID!) {
@@ -122,4 +122,4 @@ export const QUERY_BACK_END_FILE = gql`
       javascript
     }
   }
-`
+`;

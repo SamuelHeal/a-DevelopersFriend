@@ -70,13 +70,37 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addProject(projectName: String!, projectAuthor: String!): Project
-    addFolderToProject(folderName: String!, folderAuthor: String!, projectID: ID!): Folder
-    addFolderToFolder(folderName: String!, folderAuthor: String!, projectID: ID!): Folder
-    addFrontEndFileToProject(projectID: ID!, fileAuthor: String!, fileName: String!): FrontEndFile
-    addFrontEndFileToFolder(projectID: ID!, fileAuthor: String!, fileName: String!): FrontEndFile
-    addBackEndFileToProject(projectID: ID!, fileAuthor: String!, fileName: String!): BackEndFile
-    addBackEndFileToFolder(projectID: ID!, fileAuthor: String!, fileName: String!): BackEndFile
-    
+    addFolderToProject(
+      folderName: String!
+      folderAuthor: String!
+      projectID: ID!
+    ): Folder
+    addFolderToFolder(
+      folderName: String!
+      folderAuthor: String!
+      projectID: ID!
+    ): Folder
+    addFrontEndFileToProject(
+      projectID: ID!
+      fileAuthor: String!
+      fileName: String!
+    ): FrontEndFile
+    addFrontEndFileToFolder(
+      projectID: ID!
+      fileAuthor: String!
+      fileName: String!
+    ): FrontEndFile
+    addBackEndFileToProject(
+      projectID: ID!
+      fileAuthor: String!
+      fileName: String!
+    ): BackEndFile
+    addBackEndFileToFolder(
+      projectID: ID!
+      fileAuthor: String!
+      fileName: String!
+    ): BackEndFile
+
     updateHTMLInFile(fileID: ID!, html: String!): FrontEndFile
     updateCSSInFile(fileID: ID!, css: String!): FrontEndFile
     updateJSInFrontEndFile(fileID: ID!, javascript: String!): FrontEndFile
@@ -89,8 +113,6 @@ const typeDefs = gql`
     removeBackEndFile(fileID: ID!, projectID: ID!): BackEndFile
     removeFrontEndFileFromFolder(fileID: ID!, projectID: ID!): FrontEndFile
     removeBackEndFileFromFolder(fileID: ID!, projectID: ID!): BackEndFile
-
-
   }
 `;
 

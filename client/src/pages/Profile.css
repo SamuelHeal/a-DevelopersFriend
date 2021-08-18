@@ -1,113 +1,105 @@
 .formContainer {
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .addProjectForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 400px
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
 }
 
 .formContainer {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .formContainer h2 {
-    font-size: 150%;
-    margin-bottom: 15px;
+  font-size: 150%;
+  margin-bottom: 15px;
 }
 
 .formContainer p {
-    font-size: 60%
+  font-size: 60%;
 }
 
 .projectInput {
-    border-style: solid;
-    border-color: var(--titleColour);
-    background-color: var(--backgroundColour);
-    height: 35px;
-    width: 100%;
-    outline: none;
-    color: rgb(158, 157, 157);
-    border-radius: 7px;
+  border-style: solid;
+  border-color: var(--titleColour);
+  background-color: var(--backgroundColour);
+  height: 35px;
+  width: 100%;
+  outline: none;
+  color: rgb(158, 157, 157);
+  border-radius: 7px;
 }
 
 .button {
-    background-color: var(--backgroundColour);
-    color: black;
-    border-style: solid;
-    border-radius: 7px;
-    padding: 5px;
-    border-color: var(--titleColour);
-    cursor: pointer;
-    transition: all 0.2s;
+  background-color: var(--backgroundColour);
+  color: black;
+  border-style: solid;
+  border-radius: 7px;
+  padding: 5px;
+  border-color: var(--titleColour);
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .button:hover {
-    transform: scale(1.05);
-    background-color: black;
-    color: var(--backgroundColour);
+  transform: scale(1.05);
+  background-color: black;
+  color: var(--backgroundColour);
 }
 
-
-
 .profileContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
 }
 
 .headingContainer {
-    margin-top: 50px;
-    text-align: center;
-    color: var(--textColour);
-    font-weight: bold;
-    font-size: 220%;
+  margin-top: 50px;
+  text-align: center;
+  color: var(--textColour);
+  font-weight: bold;
+  font-size: 220%;
 }
 
 .mainListContainer {
-    width: 100%;
-    background: linear-gradient(black, rgb(58, 58, 58));
-    height: 58vh;
-    margin: 20px;
-    margin-top: 30px;
-    margin-bottom: 60px;
-    border-radius: 7px;
-
+  width: 100%;
+  background: linear-gradient(black, rgb(58, 58, 58));
+  height: 58vh;
+  margin: 20px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  border-radius: 7px;
 }
 
-
 @media only screen and (max-width: 900px) {
-    .profileContainer {
-        flex-direction: column;
-    }
-
-    .mainListContainer {
-        width: 500px;
-        height: 40vh;
-        margin: auto;
-        margin-top: 20px;
-    }
-
+  .profileContainer {
+    flex-direction: column;
   }
 
-  @media only screen and (max-width: 550px) {
-
-    .addProjectForm {
-        width: 200px
-    }
-    .mainListContainer {
-        width: 300px;
-
-    }
-
+  .mainListContainer {
+    width: 500px;
+    height: 40vh;
+    margin: auto;
+    margin-top: 20px;
   }
+}
+
+@media only screen and (max-width: 550px) {
+  .addProjectForm {
+    width: 200px;
+  }
+  .mainListContainer {
+    width: 300px;
+  }
+}

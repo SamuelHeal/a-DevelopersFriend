@@ -1,51 +1,46 @@
 :root {
-    --backgroundColour: #19181A;
-    --textColour: rgb(182, 180, 180);
-    --titleColour: #d1b559;
-    --secondaryColour: #479761
-    
+  --backgroundColour: #19181a;
+  --textColour: rgb(182, 180, 180);
+  --titleColour: #d1b559;
+  --secondaryColour: #479761;
 }
 
 .headerContainer {
-    height: 100px;
-    padding: 20px
+  height: 100px;
+  padding: 20px;
 }
 
 .link:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .title {
-    color: var(--titleColour);
-    text-decoration: none;
-    transition: all 0.3s;
+  color: var(--titleColour);
+  text-decoration: none;
+  transition: all 0.3s;
 }
 
 .title:hover {
-    color: var(--secondaryColour);
+  color: var(--secondaryColour);
 }
 
 .headerButton {
-    color: var(--textColour);
-    background-color: var(--backgroundColour);
-    font-size: 130%;
-    border: none;
-    margin: 10px;
-    cursor: pointer;
-    transition: all 0.3s;
+  color: var(--textColour);
+  background-color: var(--backgroundColour);
+  font-size: 130%;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .headerButton:hover {
-    color: var(--secondaryColour);
-    text-decoration: none;
+  color: var(--secondaryColour);
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 500px) {
-
-    .title {
-        font-size: 170%;
-    }
-     
-
+  .title {
+    font-size: 170%;
   }
-
+}

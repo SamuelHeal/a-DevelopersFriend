@@ -25,23 +25,23 @@ const frontEndSchema = new Schema({
     get: (timestamp) => dateFormat(timestamp),
   },
   html: {
-      type: String,
-      required: false,
-      default: '',
-      trim: true
+    type: String,
+    required: false,
+    default: '',
+    trim: true,
   },
   css: {
-      type: String,
-      required: false,
-      default: '',
-      trim: true
+    type: String,
+    required: false,
+    default: '',
+    trim: true,
   },
   javascript: {
-      type: String,
-      required: false,
-      default: '',
-      trim: true
-  }
+    type: String,
+    required: false,
+    default: '',
+    trim: true,
+  },
 });
 
 const FrontEndFile = model('FrontEndFile', frontEndSchema);
