@@ -48,6 +48,12 @@ function FrontEndFromFolder() {
       </div>
 
       <h3 className='projectName'>{data.frontEndFile.fileName}</h3>
+      <div className='warning'>
+        <p>
+          Please save each editor before adding into another editor as your
+          changes will not be saved.
+        </p>
+      </div>
       <div className='codeEditorContainer'>
         <EditorHTML html={data.frontEndFile.html} fileID={fileID} />
         <EditorCSS css={data.frontEndFile.css} fileID={fileID} />
