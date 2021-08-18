@@ -42,7 +42,7 @@ function EditorJS({ javascript, fileID }) {
           padding: '10px',
           margin: '10px',
         }}
-        placeholder='JAVASCRIPT - does not render'
+        placeholder='JAVASCRIPT'
         mode='javascript'
         theme='twilight'
         name='javascript'

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Helmet } from 'react-helmet';
 
 import ReactHtmlParser, {
   processNodes,
@@ -26,6 +27,7 @@ function FrontEnd() {
 
   const html = data.frontEndFile.html;
   const css = data.frontEndFile.css;
+  const js = data.frontEndFile.javascript;
 
   function renderHTML() {
     return <>{ReactHtmlParser(html)}</>;
@@ -44,7 +46,9 @@ function FrontEnd() {
     render() {
       return Style.it(
         this.props.cssText,
-        <div>{renderHTML().props.children}</div>
+        <div>
+          <div>{renderHTML().props.children}</div>
+        </div>
       );
     }
   }
@@ -60,6 +64,9 @@ function FrontEnd() {
   return (
     <div className='renderContainer'>
       <Render cssText={css} />
+      <Helmet>
+        <script>{js}</script>
+      </Helmet>
     </div>
   );
 }
