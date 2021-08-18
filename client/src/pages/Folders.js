@@ -6,9 +6,10 @@ import '../components/fileLists/FolderList.css';
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import FolderBack from '../components/folderBackLoop/folderback';
+import FolderInFolderBack from '../components/folderBackLoop/folderinfolderback';
 
 import { QUERY_SINGLE_FOLDER } from '../utils/queries';
-import { QUERY_SINGLE_PROJECT } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
@@ -29,7 +30,7 @@ function Folders() {
 
   const refresh = async (event) => {
     event.preventDefault();
-    window.location.replace(`/projects/${folders.projectID}`);
+    window.location.replace(`/folder/${folders.projectID}`);
   };
 
   if (loading) {
@@ -42,12 +43,8 @@ function Folders() {
 
   return (
     <div className='projectContainer'>
-      <div className='backDiv'>
-        <Link className='folderBackLink' to={`/projects/${folders.projectID}`}>
-          <button onClick={refresh}>Back</button>
-        </Link>
-      </div>
-
+      <FolderBack className='width' projectData={folders} />
+      <FolderInFolderBack className='width' folderData={folders} />
       <h3 className='projectName'>{folders.folderName}</h3>
       <div className='fileContainer'>
         <h3>Folders</h3>
