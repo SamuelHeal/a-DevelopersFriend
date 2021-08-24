@@ -59,7 +59,15 @@
 .cardBody {
   color: var(--textColour);
   position: relative;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: -20px;
+}
+
+.cardBody h2 {
+  font-size: 25px;
 }
 
 .buttonContainer {
@@ -88,4 +96,24 @@
 
 .link:hover {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 900px) {
+  .cardBody h2 {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .cardBody {
+    height: 30%;
+  }
+
+  .cardBody h2 {
+    font-size: 15px;
+  }
+
+  .collectionCard {
+    height: 70px;
+  }
 }

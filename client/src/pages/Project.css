@@ -86,18 +86,14 @@
   justify-content: flex-start;
 }
 
-.backDiv button {
-  width: 100%;
-}
-
 .projectBackLink {
-  width: 100px;
+  width: 200px;
   height: 35px;
 }
 
 @media only screen and (max-width: 800px) {
   .backDiv {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 

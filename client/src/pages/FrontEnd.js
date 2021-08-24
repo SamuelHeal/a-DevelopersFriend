@@ -43,7 +43,9 @@ function FrontEnd() {
           className='projectBackLink'
           to={`/projects/${data.frontEndFile.projectID}`}
         >
-          <button onClick={refresh}>Back</button>
+          <button className='frontEndBackButton' onClick={refresh}>
+            Back
+          </button>
         </Link>
       </div>
 
